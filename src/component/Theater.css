@@ -1,0 +1,10 @@
+.Theaters{
+    color: black;
+    margin: 2%;
+}
+.BuyTicket{
+    background-color: #EB4E62;
+}
+.BuyTicket::cue{
+    background-color: #fa0021;
+}

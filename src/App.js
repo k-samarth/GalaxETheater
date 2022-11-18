@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { ChakraProvider, Grid, GridItem } from "@chakra-ui/react";
+import Header from "./component/Header";
+import Theater from "./component/Theater";
+import Filter from "./component/Filter";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider>
+      <Header />
+      <Filter/>
+      <Grid templateColumns="repeat(2, 1fr)" gap={8} align="center" margin="0% 5%">
+        <GridItem colSpan={1}>
+          <Theater />
+        </GridItem>
+        <GridItem colSpan={1}>
+          <Theater />
+        </GridItem>
+        <GridItem colSpan={1}>
+          <Theater />
+        </GridItem>
+        <GridItem colSpan={1}>
+          <Theater />
+        </GridItem>
+        <GridItem colSpan={1}>
+          <Theater />
+        </GridItem>
+        <GridItem colSpan={1}>
+          <Theater />
+        </GridItem>
+      </Grid>
+    </ChakraProvider>
   );
 }
 
