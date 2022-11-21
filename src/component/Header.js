@@ -1,9 +1,9 @@
 import React from "react";
-import { Box, Img, Wrap, WrapItem, Avatar} from "@chakra-ui/react";
+import { Box, Img, Wrap, WrapItem, Avatar } from "@chakra-ui/react";
 import logo from "../images/Logo.png";
 import "./Header.css";
 
-function Header() {
+function Header(props) {
   return (
     <div className="Headers">
       <Box bg="#333545" w="100%" p={4} color="#333545" className="Box">
@@ -25,14 +25,14 @@ function Header() {
         <div className="user">
           <Wrap>
             <WrapItem>
-                <div className="flexer">
-              <Avatar
-                size="lg"
-                name="Dan Abrahmov"
-                src="https://miro.medium.com/fit/c/176/176/0*xaub0xwl-9wLTuib.jpg"
-              />
-              <h1 className="username">Samarth</h1>
-                </div>
+              <div className="flexer">
+                <Avatar
+                  size="lg"
+                  name="Dan Abrahmov"
+                  src="https://miro.medium.com/fit/c/176/176/0*xaub0xwl-9wLTuib.jpg"
+                />
+                <h1 className="username">{props.name}</h1>
+              </div>
             </WrapItem>
           </Wrap>
         </div>

@@ -7,11 +7,17 @@ import Filter from "./component/Filter";
 import Footer from "./component/Footer";
 
 function App() {
+  var name = "Samarth";
   return (
     <ChakraProvider>
-      <Header />
-      <Filter/>
-      <Grid templateColumns="repeat(2, 1fr)" gap={8} align="center" margin="0% 5%">
+      <Header name={name} />
+      <Filter />
+      <Grid
+        templateColumns="repeat(2, 1fr)"
+        gap={8}
+        align="center"
+        margin="0% 5%"
+      >
         <GridItem colSpan={1}>
           <Theater />
         </GridItem>
@@ -31,7 +37,7 @@ function App() {
           <Theater />
         </GridItem>
       </Grid>
-    <Footer/>
+      <Footer />
     </ChakraProvider>
   );
 }
