@@ -31,7 +31,7 @@ function Header() {
                 name="Dan Abrahmov"
                 src="https://miro.medium.com/fit/c/176/176/0*xaub0xwl-9wLTuib.jpg"
               />
-              <h1 className="username">Hi, Sam</h1>
+              <h1 className="username">Samarth</h1>
                 </div>
             </WrapItem>
           </Wrap>

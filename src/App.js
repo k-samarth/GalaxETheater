@@ -4,6 +4,7 @@ import { ChakraProvider, Grid, GridItem } from "@chakra-ui/react";
 import Header from "./component/Header";
 import Theater from "./component/Theater";
 import Filter from "./component/Filter";
+import Footer from "./component/Footer";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Theater />
         </GridItem>
       </Grid>
+    <Footer/>
     </ChakraProvider>
   );
 }
