@@ -10,8 +10,8 @@ import {
   Select,
 } from "@chakra-ui/react";
 import { MdTune } from "react-icons/md";
-import { TbLayoutGridAdd } from "react-icons/tb";
 import "./Filter.css";
+import AddTheater from "./AddTheater";
 
 // var e = document.getElementById("FilterOption");
 // var value = e.value;
@@ -59,16 +59,7 @@ function Filter(props) {
                 <option value="All">All</option>
               </Select>
             </Stack>
-            {props.userType == "ADMIN" ? <Button
-              leftIcon={<TbLayoutGridAdd />}
-              bg="#EB4E62"
-              color="white"
-              variant="solid"
-              margin=" 0% 5%"
-              padding="0% 3%"
-            >
-              Add Theater
-            </Button> :  <div></div>}
+            {props.userType == "ADMIN" ? <AddTheater/> :  <div></div>}
           </InputGroup>
         </Flex>
       </Box>

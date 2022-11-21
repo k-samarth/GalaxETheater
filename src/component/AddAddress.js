@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, FormControl, FormLabel, Grid, GridItem, Input } from "@chakra-ui/react";
+import {
+  Box,
+  FormControl,
+  FormLabel,
+  Grid,
+  GridItem,
+  Input,
+} from "@chakra-ui/react";
 import {
   Modal,
   ModalOverlay,
@@ -11,7 +18,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
-function UpdateAddress() {
+function AddAddress() {
   const OverlayOne = () => (
     <ModalOverlay
       bg="blackAlpha.300"
@@ -37,7 +44,7 @@ function UpdateAddress() {
   return (
     <div>
       <Button onClick={onOpen} colorScheme="blue" mr={3}>
-        Update Address
+        Add Address
       </Button>
       <Modal
         initialFocusRef={initialRef}
@@ -53,7 +60,7 @@ function UpdateAddress() {
         />
         <Box>
           <ModalContent backgroundColor="#333545" color="white">
-            <ModalHeader>Update Address</ModalHeader>
+            <ModalHeader>Add Address</ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={6}>
               <FormControl>
@@ -114,4 +121,4 @@ function UpdateAddress() {
   );
 }
 
-export default UpdateAddress;
+export default AddAddress;

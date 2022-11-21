@@ -1,10 +1,5 @@
-import React from 'react'
-import {
-  Button,
-  FormControl,
-  FormLabel,
-  Input,
-} from "@chakra-ui/react";
+import React from "react";
+import { Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
 import {
   Modal,
   ModalOverlay,
@@ -17,44 +12,50 @@ import {
 import { useDisclosure } from "@chakra-ui/react";
 import UpdateAddress from "./UpdateAddress";
 import UpdateSeats from "./UpdateSeats";
+import { TbLayoutGridAdd } from "react-icons/tb";
+import AddAddress from "./AddAddress";
+import AddSeats from "./AddSeats";
 
-function UpdateTheater() {
-    const OverlayOne = () => (
-      <ModalOverlay
-        bg="blackAlpha.300"
-        backdropFilter="blur(10px) hue-rotate(90deg)"
-      />
-    );
+function AddTheater() {
+  const OverlayOne = () => (
+    <ModalOverlay
+      bg="blackAlpha.300"
+      backdropFilter="blur(10px) hue-rotate(90deg)"
+    />
+  );
 
-    const OverlayTwo = () => (
-      <ModalOverlay
-        bg="none"
-        backdropFilter="auto"
-        backdropInvert="80%"
-        backdropBlur="2px"
-      />
-    );
+  const OverlayTwo = () => (
+    <ModalOverlay
+      bg="none"
+      backdropFilter="auto"
+      backdropInvert="80%"
+      backdropBlur="2px"
+    />
+  );
 
-    const { isOpen, onOpen, onClose } = useDisclosure();
-    const [overlay, setOverlay] = React.useState(<OverlayOne />);
-    const initialRef = React.useRef(null);
-    const finalRef = React.useRef(null);
-    const { isOpen1, onToggle } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [overlay, setOverlay] = React.useState(<OverlayOne />);
+  const initialRef = React.useRef(null);
+  const finalRef = React.useRef(null);
+  const { isOpen1, onToggle } = useDisclosure();
   return (
     <div>
       <Button
-        flex="1"
-        variant="ghost"
-        className="BuyTicket"
+        leftIcon={<TbLayoutGridAdd />}
+        bg="#EB4E62"
         color="white"
-        borderRadius="30px"
+        variant="solid"
+        margin=" 0% 5%"
+        padding="0% 3%"
+        width="xs"
         onClick={() => {
           setOverlay(<OverlayTwo />);
           onOpen();
         }}
       >
-        Update Theater
+        Add Theater
       </Button>
+      
       <>
         <Modal
           initialFocusRef={initialRef}
@@ -70,7 +71,7 @@ function UpdateTheater() {
             backdropBlur="2px"
           />
           <ModalContent backgroundColor="#333545" color="white">
-            <ModalHeader>Update Theater</ModalHeader>
+            <ModalHeader>Add Theater</ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={6}>
               <FormControl>
@@ -91,11 +92,12 @@ function UpdateTheater() {
                 <FormLabel>Image URL</FormLabel>
                 <Input placeholder="Image URL" type="text" />
               </FormControl>
+
             </ModalBody>
 
             <ModalFooter>
-              <UpdateAddress></UpdateAddress>
-              <UpdateSeats></UpdateSeats>
+              <AddAddress></AddAddress>
+              <AddSeats></AddSeats>
               <Button onClick={onClose} colorScheme="cyan" mr={3}>
                 Submit
               </Button>
@@ -110,4 +112,4 @@ function UpdateTheater() {
   );
 }
 
-export default UpdateTheater
+export default AddTheater;
