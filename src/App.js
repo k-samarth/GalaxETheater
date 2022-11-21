@@ -8,10 +8,12 @@ import Footer from "./component/Footer";
 
 function App() {
   var name = "Samarth";
+  var userType = "ADMIN";
+  // var userType = "USER";
   return (
     <ChakraProvider>
       <Header name={name} />
-      <Filter />
+      <Filter userType={userType} />
       <Grid
         templateColumns="repeat(2, 1fr)"
         gap={8}
@@ -19,22 +21,22 @@ function App() {
         margin="0% 5%"
       >
         <GridItem colSpan={1}>
-          <Theater />
+          <Theater userType={userType} />
         </GridItem>
         <GridItem colSpan={1}>
-          <Theater />
+          <Theater userType={userType} />
         </GridItem>
         <GridItem colSpan={1}>
-          <Theater />
+          <Theater userType={userType} />
         </GridItem>
         <GridItem colSpan={1}>
-          <Theater />
+          <Theater userType={userType} />
         </GridItem>
         <GridItem colSpan={1}>
-          <Theater />
+          <Theater userType={userType} />
         </GridItem>
         <GridItem colSpan={1}>
-          <Theater />
+          <Theater userType={userType} />
         </GridItem>
       </Grid>
       <Footer />
