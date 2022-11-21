@@ -55,7 +55,7 @@ function AddTheater() {
       >
         Add Theater
       </Button>
-      
+
       <>
         <Modal
           initialFocusRef={initialRef}
@@ -92,7 +92,6 @@ function AddTheater() {
                 <FormLabel>Image URL</FormLabel>
                 <Input placeholder="Image URL" type="text" />
               </FormControl>
-
             </ModalBody>
 
             <ModalFooter>

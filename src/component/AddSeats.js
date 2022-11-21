@@ -194,7 +194,7 @@ function AddSeats() {
 
             <ModalFooter>
               <Button onClick={onClose} colorScheme="blue" mr={3}>
-                Save
+                Submit
               </Button>
               <Button onClick={handleClick} colorScheme="blue" mr={3}>
                 RESET
