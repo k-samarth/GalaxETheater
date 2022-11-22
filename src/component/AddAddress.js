@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import {
   Box,
   FormControl,
@@ -18,7 +19,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
-function AddAddress() {
+function AddAddress(props) {
   const OverlayOne = () => (
     <ModalOverlay
       bg="blackAlpha.300"
@@ -40,10 +41,45 @@ function AddAddress() {
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
   const { isOpen1, onToggle } = useDisclosure();
+  const [addressLine1,setaddressLine1]=useState("");
+  const[addressLine2,setaddressLine2]=useState("");
+  const[city,setcity]=useState("");
+  const[state,setstate]=useState("");
+  const[pincode,setpincode]=useState("");
+  const[country,setcountry]=useState("");
 
+ const submitfunctiontorow =()=>{
+  
+  
+    const details  = JSON.parse(localStorage.getItem("data"));
+    console.log(details);
+const address = { 
+      addressLine1,addressLine2,city,state,pincode,country}
+      console.log(address);
+    
+ const userdata = {
+      code:details.code,
+        name:details.name,
+        seatingCapacity:70,
+      address:address
+      }
+
+      console.log(userdata);
+
+    localStorage.setItem("Theateraddresses",JSON.stringify(userdata));
+ }
+ 
+  const submitter=()=>{
+    onOpen();
+    props.submitfunction();
+  }
+  const updater=()=>{
+    onClose();
+    submitfunctiontorow();
+  }
   return (
     <div>
-      <Button onClick={onOpen} colorScheme="blue" mr={3}>
+      <Button onClick={submitter} colorScheme="blue" mr={3}>
         Add Address
       </Button>
       <Modal
@@ -69,6 +105,9 @@ function AddAddress() {
                   ref={initialRef}
                   placeholder="Street Address 1"
                   type="text"
+                  value={addressLine1}
+                   onChange={(e)=>{setaddressLine1(e.target.value)}}
+
                 />
               </FormControl>
 
@@ -78,6 +117,8 @@ function AddAddress() {
                   ref={initialRef}
                   placeholder="Street Address 2"
                   type="text"
+                  value={addressLine2} 
+                  onChange={(e)=>{setaddressLine2(e.target.value)}}
                 />
               </FormControl>
 
@@ -85,32 +126,34 @@ function AddAddress() {
                 <GridItem colSpan={1}>
                   <FormControl mt={2} size="xs">
                     <FormLabel>City</FormLabel>
-                    <Input placeholder="City" type="text" />
+                    <Input placeholder="City" type="text"
+                    value={city} 
+                    onChange={(e)=>{setcity(e.target.value)}}  />
                   </FormControl>
                 </GridItem>
                 <GridItem colSpan={1}>
                   <FormControl mt={2} size="xs">
                     <FormLabel>State</FormLabel>
-                    <Input placeholder="State" type="number" />
+                    <Input placeholder="State" type="number" value={state} onChange={(e)=>{setstate(e.target.value)}}/>
                   </FormControl>
                 </GridItem>
                 <GridItem colSpan={1}>
                   <FormControl mt={2}>
                     <FormLabel>Pincode</FormLabel>
-                    <Input placeholder="Pincode" type="number" />
+                    <Input placeholder="Pincode" type="number" value={pincode} onChange={(e)=>{setpincode(e.target.value)}}/>
                   </FormControl>
                 </GridItem>
                 <GridItem colSpan={1}>
                   <FormControl mt={2}>
                     <FormLabel>Country</FormLabel>
-                    <Input placeholder="Country" type="text" />
+                    <Input placeholder="Country" type="text" value={country} onChange={(e)=>{setcountry(e.target.value)}} />
                   </FormControl>
                 </GridItem>
               </Grid>
             </ModalBody>
 
             <ModalFooter>
-              <Button onClick={onClose} colorScheme="blue" mr={3}>
+              <Button onClick={updater} colorScheme="blue" mr={3}>
                 Save
               </Button>
             </ModalFooter>

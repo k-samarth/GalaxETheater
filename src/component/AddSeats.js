@@ -48,6 +48,11 @@ function AddSeats(props) {
 
   const [plusdisabled, setPlusDisabled] = useState(false);
   const [minusdisabled, setMinusDisabled] = useState(false);
+  const [code, setcode] = useState("");
+  const [name, setname] = useState("");
+  const [totalSeats, settotalSeats] = useState(0);
+  const [price, setprice] = useState("");
+  const [seattype, setseattype] = useState("");
 
  
 
@@ -101,35 +106,47 @@ function AddSeats(props) {
                 <GridItem colSpan={1}>
                   <FormControl mt={2} size="xs">
                     <FormLabel>Row Code</FormLabel>
-                    <Input placeholder="Row Code" type="text" />
+                    <Input placeholder="Row Code" type="text"
+                    value={code} 
+                    onChange={(e) => { setcode(e.target.value) }} />
                   </FormControl>
                 </GridItem>
                 <GridItem colSpan={1}>
                   <FormControl mt={2} size="xs">
                     <FormLabel>Row Name</FormLabel>
-                    <Input placeholder="Row Name" type="text" />
+                    <Input placeholder="Row Name" type="text" 
+                      value={name} 
+                      onChange={(e) => { setname(e.target.value) }}
+                    />
                   </FormControl>
                 </GridItem>
                 <GridItem colSpan={1}>
                   <FormControl mt={2}>
                     <FormLabel>Seat Type</FormLabel>
-                    <Select>
-                      <option>Premium</option>
-                      <option>Gold</option>
-                      <option>Normal</option>
+                    <Select onChange={(e) => { setseattype(e.target.value) }} defaultValue="Normal">
+                      <option value="Premium">Premium</option>
+                      <option value="Gold">Gold</option>
+                      <option value="Normal">Normal</option>
+
+                      
                     </Select>
                   </FormControl>
                 </GridItem>
                 <GridItem colSpan={1}>
                   <FormControl mt={2}>
-                    <FormLabel>Number of Seats in the Row</FormLabel>
-                    <Input placeholder="Number of Seats" type="number" />
+                    <FormLabel>Number of Seats in the Row </FormLabel>
+                    <Input placeholder="Number of Seats" type="number" 
+                      value={totalSeats} 
+                      onChange={(e) => { settotalSeats(e.target.value) }} 
+                    />
                   </FormControl>
                 </GridItem>
                 <GridItem colSpan={2}>
                   <FormControl mt={2}>
                     <FormLabel>Price</FormLabel>
-                    <Input placeholder="Price" type="number" />
+                    <Input placeholder="Price" type="number"
+                     value={price} 
+                      onChange={(e) => { setprice(e.target.value) }} />
                   </FormControl>
                 </GridItem>
               </Grid>

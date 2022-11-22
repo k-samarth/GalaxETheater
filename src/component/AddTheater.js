@@ -38,6 +38,9 @@ function AddTheater() {
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
   const [rowAdd, setRowAdd] = useState(1);
+  const [code,setcode]=useState("");
+    const[name,setname]=useState("");
+    const[imageurl,setimageurl]=useState("");
 
   const updateAddRow = () => {
     if (rowAdd <= 17 && rowAdd > 0) {
@@ -45,6 +48,13 @@ function AddTheater() {
       console.log(rowAdd);
     }
   };
+
+  const submitfunction = (e)=>{
+    const data={code,name,imageurl};
+
+    localStorage.setItem("data",JSON.stringify(data));
+        e.preventDefault();
+      }
   return (
     <div>
       <Button
@@ -87,22 +97,29 @@ function AddTheater() {
                   ref={initialRef}
                   placeholder="Theater Code"
                   type="text"
+                  value={code} 
+                  onChange={(e)=>{setcode(e.target.value)}}
+
                 />
               </FormControl>
 
               <FormControl mt={4}>
                 <FormLabel>Theater Name</FormLabel>
-                <Input placeholder="Theater name" type="text" />
+                <Input placeholder="Theater name" type="text"
+                value={name} 
+                onChange={(e)=>{setname(e.target.value)}} />
               </FormControl>
 
               <FormControl mt={4}>
                 <FormLabel>Image URL</FormLabel>
-                <Input placeholder="Image URL" type="text" />
+                <Input placeholder="Image URL" type="text"   value={imageurl} 
+                onChange={(e)=>{setimageurl(e.target.value)}}/>
               </FormControl>
             </ModalBody>
 
             <ModalFooter>
-              <AddAddress></AddAddress>
+            
+             <AddAddress submitfunction={submitfunction}></AddAddress>
               <AddSeats updateAddRow={updateAddRow} rowAdd={rowAdd}></AddSeats>
               {rowAdd > 15 ? (
                 <Button onClick={onClose} colorScheme="cyan" mr={3}>
