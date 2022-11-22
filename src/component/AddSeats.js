@@ -6,6 +6,7 @@ import {
   Grid,
   GridItem,
   Input,
+  Select
 } from "@chakra-ui/react";
 import {
   Modal,
@@ -73,9 +74,11 @@ function AddSeats(props) {
   }
   return (
     <div>
-      {props.rowAdd<=15 ? <Button onClick={update} colorScheme="blue" mr={3}>
-        Add Rows
-      </Button> : null}
+      {props.rowAdd <= 15 ? (
+        <Button onClick={update} colorScheme="blue" mr={3}>
+          Add Rows
+        </Button>
+      ) : null}
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
@@ -94,107 +97,42 @@ function AddSeats(props) {
             <ModalHeader>Add Rows</ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={6}>
-              <div id="rows">
-                {" "}
-                <span> Rows</span>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span>Columns</span>
-              </div>
-              <div className="container-holder">
-                <div className="container">
-                  <div className="privilage">
-                    <div className="privilage_names">
-                      <p>PREMIUM</p>
-                    </div>
-                    <div className="buttons">
-                      <span id="count">6</span>
-                    </div>
-                  </div>
-                  <div className="privilage">
-                    <div className="privilage_names">
-                      <p>EXECUTIVE</p>
-                    </div>
-                    <div className="buttons1">
-                      <span id="count">6</span>
-                    </div>
-                  </div>
-                  <div className="privilage">
-                    <div className="privilage_names">
-                      <p>NORMAL</p>
-                    </div>
-                    <div className="buttons2">
-                      <span id="count">6</span>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <div className="container">
-                    <div className="privilage">
-                      <div className="buttonss">
-                        <button
-                          id="plusandminusb"
-                          onClick={plusbuttonfunction}
-                          disabled={plusdisabled}
-                        >
-                          +
-                        </button>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span id="count">{count1}</span>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <button
-                          disabled={minusdisabled}
-                          id="plusandminusb"
-                          onClick={minusbuttonfunction}
-                        >
-                          -
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="privilage">
-                      <div className="buttons1_1">
-                        <button
-                          id="plusandminusb"
-                          onClick={plusbuttonfunction}
-                          disabled={plusdisabled}
-                        >
-                          +
-                        </button>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <span id="count">{count1}</span>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <button
-                          disabled={minusdisabled}
-                          id="plusandminusb"
-                          onClick={minusbuttonfunction}
-                        >
-                          -
-                        </button>
-                      </div>
-                    </div>
-                    <div className="privilage">
-                      <div className="buttons2_1">
-                        <button
-                          id="plusandminusb"
-                          onClick={plusbuttonfunction}
-                          disabled={plusdisabled}
-                        >
-                          +
-                        </button>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span id="count">{count1}</span>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <button
-                          disabled={minusdisabled}
-                          id="plusandminusb"
-                          onClick={minusbuttonfunction}
-                        >
-                          -
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div></div>
-                </div>{" "}
-              </div>
+              <Grid templateColumns="repeat(2, 2fr)" gap={8} align="center">
+                <GridItem colSpan={1}>
+                  <FormControl mt={2} size="xs">
+                    <FormLabel>Row Code</FormLabel>
+                    <Input placeholder="Row Code" type="text" />
+                  </FormControl>
+                </GridItem>
+                <GridItem colSpan={1}>
+                  <FormControl mt={2} size="xs">
+                    <FormLabel>Row Name</FormLabel>
+                    <Input placeholder="Row Name" type="text" />
+                  </FormControl>
+                </GridItem>
+                <GridItem colSpan={1}>
+                  <FormControl mt={2}>
+                    <FormLabel>Seat Type</FormLabel>
+                    <Select>
+                      <option>Premium</option>
+                      <option>Gold</option>
+                      <option>Normal</option>
+                    </Select>
+                  </FormControl>
+                </GridItem>
+                <GridItem colSpan={1}>
+                  <FormControl mt={2}>
+                    <FormLabel>Number of Seats in the Row</FormLabel>
+                    <Input placeholder="Number of Seats" type="number" />
+                  </FormControl>
+                </GridItem>
+                <GridItem colSpan={2}>
+                  <FormControl mt={2}>
+                    <FormLabel>Price</FormLabel>
+                    <Input placeholder="Price" type="number" />
+                  </FormControl>
+                </GridItem>
+              </Grid>
             </ModalBody>
 
             <ModalFooter>
