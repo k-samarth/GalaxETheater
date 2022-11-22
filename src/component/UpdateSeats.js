@@ -71,7 +71,7 @@ function UpdateSeats(props) {
   };
 return (
   <div>
-    {props.rowAdd < 15 ? (
+    {props.rowAdd <= 15 ? (
       <Button onClick={update} colorScheme="blue" mr={3}>
         Update Rows
       </Button>

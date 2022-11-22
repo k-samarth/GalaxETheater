@@ -39,12 +39,12 @@ function AddTheater() {
   const finalRef = React.useRef(null);
   const [rowAdd, setRowAdd] = useState(1);
 
-  const updateAddRow=()=>{
-    if(rowAdd<=16 && rowAdd>0){
-      setRowAdd((prevCount)=>prevCount+1);
+  const updateAddRow = () => {
+    if (rowAdd <= 17 && rowAdd > 0) {
+      setRowAdd((prevCount) => prevCount + 1);
       console.log(rowAdd);
     }
-  }
+  };
   return (
     <div>
       <Button
@@ -104,9 +104,11 @@ function AddTheater() {
             <ModalFooter>
               <AddAddress></AddAddress>
               <AddSeats updateAddRow={updateAddRow} rowAdd={rowAdd}></AddSeats>
-              {rowAdd>=16 ? <Button onClick={onClose} colorScheme="cyan" mr={3}>
-                Submit
-              </Button>:null}
+              {rowAdd > 15 ? (
+                <Button onClick={onClose} colorScheme="cyan" mr={3}>
+                  Submit
+                </Button>
+              ) : null}
               <Button onClick={onClose} colorScheme="blackAlpha">
                 Cancel
               </Button>

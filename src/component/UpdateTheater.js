@@ -17,7 +17,7 @@ function UpdateTheater(props) {
   const [rowAdd, setRowAdd] = useState(1);
 
   const updateAddRow = () => {
-    if (rowAdd <= 16 && rowAdd > 0) {
+    if (rowAdd <= 17 && rowAdd > 0) {
       setRowAdd((prevCount) => prevCount + 1);
       console.log(rowAdd);
     }
@@ -101,7 +101,7 @@ function UpdateTheater(props) {
                 updateAddRow={updateAddRow}
                 rowAdd={rowAdd}
               ></UpdateSeats>
-              {rowAdd >= 16 ? (
+              {rowAdd > 15 ? (
                 <Button onClick={onClose} colorScheme="cyan" mr={3}>
                   Submit
                 </Button>

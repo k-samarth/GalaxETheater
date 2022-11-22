@@ -73,7 +73,7 @@ function AddSeats(props) {
   }
   return (
     <div>
-      {props.rowAdd<15 ? <Button onClick={update} colorScheme="blue" mr={3}>
+      {props.rowAdd<=15 ? <Button onClick={update} colorScheme="blue" mr={3}>
         Add Rows
       </Button> : null}
       <Modal
