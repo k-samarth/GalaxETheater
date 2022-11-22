@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
 import {
   Modal,
@@ -37,7 +37,14 @@ function AddTheater() {
   const [overlay, setOverlay] = React.useState(<OverlayOne />);
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
-  const { isOpen1, onToggle } = useDisclosure();
+  const [rowAdd, setRowAdd] = useState(1);
+
+  const updateAddRow=()=>{
+    if(rowAdd<=16 && rowAdd>0){
+      setRowAdd((prevCount)=>prevCount+1);
+      console.log(rowAdd);
+    }
+  }
   return (
     <div>
       <Button
@@ -96,10 +103,10 @@ function AddTheater() {
 
             <ModalFooter>
               <AddAddress></AddAddress>
-              <AddSeats></AddSeats>
-              <Button onClick={onClose} colorScheme="cyan" mr={3}>
+              <AddSeats updateAddRow={updateAddRow} rowAdd={rowAdd}></AddSeats>
+              {rowAdd>=16 ? <Button onClick={onClose} colorScheme="cyan" mr={3}>
                 Submit
-              </Button>
+              </Button>:null}
               <Button onClick={onClose} colorScheme="blackAlpha">
                 Cancel
               </Button>

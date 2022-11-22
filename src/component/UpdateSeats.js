@@ -20,7 +20,7 @@ import {
 import { useDisclosure } from "@chakra-ui/react";
 import "./SeatStyles.css";
 
-function UpdateSeats() {
+function UpdateSeats(props) {
   const OverlayOne = () => (
     <ModalOverlay
       bg="blackAlpha.300"
@@ -65,146 +65,151 @@ function UpdateSeats() {
       setCount1(count1 + 1);
     }
   };
-
-  return (
-    <div>
-      <Button onClick={onOpen} colorScheme="blue" mr={3}>
+  const update = () => {
+    onOpen();
+    props.updateAddRow();
+  };
+return (
+  <div>
+    {props.rowAdd < 15 ? (
+      <Button onClick={update} colorScheme="blue" mr={3}>
         Update Rows
       </Button>
-      <Modal
-        initialFocusRef={initialRef}
-        finalFocusRef={finalRef}
-        isOpen={isOpen}
-        onClose={onClose}
-        size="xl"
-      >
-        <ModalOverlay
-          bg="none"
-          backdropFilter="auto"
-          backdropInvert="80%"
-          backdropBlur="2px"
-        />
-        <Box>
-          <ModalContent backgroundColor="#333545" color="white">
-            <ModalHeader>Update Rows</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody pb={6}>
-              <div id="rows">
-                {" "}
-                <span> Rows</span>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span>Columns</span>
+    ) : null}
+    <Modal
+      initialFocusRef={initialRef}
+      finalFocusRef={finalRef}
+      isOpen={isOpen}
+      onClose={onClose}
+      size="xl"
+    >
+      <ModalOverlay
+        bg="none"
+        backdropFilter="auto"
+        backdropInvert="80%"
+        backdropBlur="2px"
+      />
+      <Box>
+        <ModalContent backgroundColor="#333545" color="white">
+          <ModalHeader>Update Rows</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody pb={6}>
+            <div id="rows">
+              {" "}
+              <span> Rows</span>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span>Columns</span>
+            </div>
+            <div className="container-holder">
+              <div className="container">
+                <div className="privilage">
+                  <div className="privilage_names">
+                    <p>PREMIUM</p>
+                  </div>
+                  <div className="buttons">
+                    <span id="count">6</span>
+                  </div>
+                </div>
+                <div className="privilage">
+                  <div className="privilage_names">
+                    <p>EXECUTIVE</p>
+                  </div>
+                  <div className="buttons1">
+                    <span id="count">6</span>
+                  </div>
+                </div>
+                <div className="privilage">
+                  <div className="privilage_names">
+                    <p>NORMAL</p>
+                  </div>
+                  <div className="buttons2">
+                    <span id="count">6</span>
+                  </div>
+                </div>
               </div>
-              <div className="container-holder">
+              <div>
                 <div className="container">
                   <div className="privilage">
-                    <div className="privilage_names">
-                      <p>PREMIUM</p>
+                    <div className="buttonss">
+                      <button
+                        id="plusandminusb"
+                        onClick={plusbuttonfunction}
+                        disabled={plusdisabled}
+                      >
+                        +
+                      </button>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<span id="count">{count1}</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <button
+                        disabled={minusdisabled}
+                        id="plusandminusb"
+                        onClick={minusbuttonfunction}
+                      >
+                        -
+                      </button>
                     </div>
-                    <div className="buttons">
-                      <span id="count">6</span>
+                  </div>
+
+                  <div className="privilage">
+                    <div className="buttons1_1">
+                      <button
+                        id="plusandminusb"
+                        onClick={plusbuttonfunction}
+                        disabled={plusdisabled}
+                      >
+                        +
+                      </button>
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <span id="count">{count1}</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <button
+                        disabled={minusdisabled}
+                        id="plusandminusb"
+                        onClick={minusbuttonfunction}
+                      >
+                        -
+                      </button>
                     </div>
                   </div>
                   <div className="privilage">
-                    <div className="privilage_names">
-                      <p>EXECUTIVE</p>
-                    </div>
-                    <div className="buttons1">
-                      <span id="count">6</span>
-                    </div>
-                  </div>
-                  <div className="privilage">
-                    <div className="privilage_names">
-                      <p>NORMAL</p>
-                    </div>
-                    <div className="buttons2">
-                      <span id="count">6</span>
+                    <div className="buttons2_1">
+                      <button
+                        id="plusandminusb"
+                        onClick={plusbuttonfunction}
+                        disabled={plusdisabled}
+                      >
+                        +
+                      </button>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<span id="count">{count1}</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <button
+                        disabled={minusdisabled}
+                        id="plusandminusb"
+                        onClick={minusbuttonfunction}
+                      >
+                        -
+                      </button>
                     </div>
                   </div>
                 </div>
-                <div>
-                  <div className="container">
-                    <div className="privilage">
-                      <div className="buttonss">
-                        <button
-                          id="plusandminusb"
-                          onClick={plusbuttonfunction}
-                          disabled={plusdisabled}
-                        >
-                          +
-                        </button>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span id="count">{count1}</span>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <button
-                          disabled={minusdisabled}
-                          id="plusandminusb"
-                          onClick={minusbuttonfunction}
-                        >
-                          -
-                        </button>
-                      </div>
-                    </div>
+                <div></div>
+              </div>{" "}
+            </div>
+          </ModalBody>
 
-                    <div className="privilage">
-                      <div className="buttons1_1">
-                        <button
-                          id="plusandminusb"
-                          onClick={plusbuttonfunction}
-                          disabled={plusdisabled}
-                        >
-                          +
-                        </button>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <span id="count">{count1}</span>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <button
-                          disabled={minusdisabled}
-                          id="plusandminusb"
-                          onClick={minusbuttonfunction}
-                        >
-                          -
-                        </button>
-                      </div>
-                    </div>
-                    <div className="privilage">
-                      <div className="buttons2_1">
-                        <button
-                          id="plusandminusb"
-                          onClick={plusbuttonfunction}
-                          disabled={plusdisabled}
-                        >
-                          +
-                        </button>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span id="count">{count1}</span>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <button
-                          disabled={minusdisabled}
-                          id="plusandminusb"
-                          onClick={minusbuttonfunction}
-                        >
-                          -
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div></div>
-                </div>{" "}
-              </div>
-            </ModalBody>
-
-            <ModalFooter>
-              <Button onClick={onClose} colorScheme="blue" mr={3}>
-                Save
-              </Button>
-              <Button onClick={handleClick} colorScheme="blue" mr={3}>
-                RESET
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Box>
-      </Modal>
-    </div>
-  );
+          <ModalFooter>
+            <Button onClick={onClose} colorScheme="blue" mr={3}>
+              Save
+            </Button>
+            <Button onClick={handleClick} colorScheme="blue" mr={3}>
+              RESET
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Box>
+    </Modal>
+  </div>
+);
 }
 
 export default UpdateSeats;

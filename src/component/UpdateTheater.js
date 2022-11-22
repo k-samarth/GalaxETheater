@@ -1,10 +1,5 @@
-import React from 'react'
-import {
-  Button,
-  FormControl,
-  FormLabel,
-  Input,
-} from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
 import {
   Modal,
   ModalOverlay,
@@ -18,33 +13,40 @@ import { useDisclosure } from "@chakra-ui/react";
 import UpdateAddress from "./UpdateAddress";
 import UpdateSeats from "./UpdateSeats";
 
-function UpdateTheater() {
-    const OverlayOne = () => (
-      <ModalOverlay
-        bg="blackAlpha.300"
-        backdropFilter="blur(10px) hue-rotate(90deg)"
-      />
-    );
+function UpdateTheater(props) {
+  const [rowAdd, setRowAdd] = useState(1);
 
-    const OverlayTwo = () => (
-      <ModalOverlay
-        bg="none"
-        backdropFilter="auto"
-        backdropInvert="80%"
-        backdropBlur="2px"
-      />
-    );
+  const updateAddRow = () => {
+    if (rowAdd <= 16 && rowAdd > 0) {
+      setRowAdd((prevCount) => prevCount + 1);
+      console.log(rowAdd);
+    }
+  };
+  const OverlayOne = () => (
+    <ModalOverlay
+      bg="blackAlpha.300"
+      backdropFilter="blur(10px) hue-rotate(90deg)"
+    />
+  );
 
-    const { isOpen, onOpen, onClose } = useDisclosure();
-    const [overlay, setOverlay] = React.useState(<OverlayOne />);
-    const initialRef = React.useRef(null);
-    const finalRef = React.useRef(null);
-    const { isOpen1, onToggle } = useDisclosure();
+  const OverlayTwo = () => (
+    <ModalOverlay
+      bg="none"
+      backdropFilter="auto"
+      backdropInvert="80%"
+      backdropBlur="2px"
+    />
+  );
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [overlay, setOverlay] = React.useState(<OverlayOne />);
+  const initialRef = React.useRef(null);
+  const finalRef = React.useRef(null);
+
   return (
     <div>
       <Button
-        flex="1"
-        variant="ghost"
+        variant="outline"
         className="BuyTicket"
         color="white"
         borderRadius="30px"
@@ -95,10 +97,15 @@ function UpdateTheater() {
 
             <ModalFooter>
               <UpdateAddress></UpdateAddress>
-              <UpdateSeats></UpdateSeats>
-              <Button onClick={onClose} colorScheme="cyan" mr={3}>
-                Submit
-              </Button>
+              <UpdateSeats
+                updateAddRow={updateAddRow}
+                rowAdd={rowAdd}
+              ></UpdateSeats>
+              {rowAdd >= 16 ? (
+                <Button onClick={onClose} colorScheme="cyan" mr={3}>
+                  Submit
+                </Button>
+              ) : null}
               <Button onClick={onClose} colorScheme="blackAlpha">
                 Cancel
               </Button>
@@ -110,4 +117,4 @@ function UpdateTheater() {
   );
 }
 
-export default UpdateTheater
+export default UpdateTheater;

@@ -20,7 +20,7 @@ import {
 import { useDisclosure } from "@chakra-ui/react";
 import "./SeatStyles.css";
 
-function AddSeats() {
+function AddSeats(props) {
   const OverlayOne = () => (
     <ModalOverlay
       bg="blackAlpha.300"
@@ -48,6 +48,8 @@ function AddSeats() {
   const [plusdisabled, setPlusDisabled] = useState(false);
   const [minusdisabled, setMinusDisabled] = useState(false);
 
+ 
+
   const handleClick = () => {
     setCount1(6);
   };
@@ -65,12 +67,15 @@ function AddSeats() {
       setCount1(count1 + 1);
     }
   };
-
+  const update=()=>{
+    onOpen();
+    props.updateAddRow();
+  }
   return (
     <div>
-      <Button onClick={onOpen} colorScheme="blue" mr={3}>
+      {props.rowAdd<15 ? <Button onClick={update} colorScheme="blue" mr={3}>
         Add Rows
-      </Button>
+      </Button> : null}
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
