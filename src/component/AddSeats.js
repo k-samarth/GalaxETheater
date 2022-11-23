@@ -117,7 +117,7 @@ function AddSeats(props) {
         <ModalOverlay
           bg="none"
           backdropFilter="auto"
-          backdropInvert="80%"
+          backdropInvert="10%"
           backdropBlur="2px"
         />
         <Box>

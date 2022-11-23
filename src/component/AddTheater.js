@@ -118,7 +118,7 @@ axios.post("http://localhost:9090/theatre", userdata)
           <ModalOverlay
             bg="none"
             backdropFilter="auto"
-            backdropInvert="80%"
+            backdropInvert="10%"
             backdropBlur="2px"
           />
           <ModalContent backgroundColor="#333545" color="white">

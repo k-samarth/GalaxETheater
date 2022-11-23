@@ -31,7 +31,7 @@ function AddAddress(props) {
     <ModalOverlay
       bg="none"
       backdropFilter="auto"
-      backdropInvert="80%"
+      backdropInvert="10%"
       backdropBlur="2px"
     />
   );
@@ -41,42 +41,46 @@ function AddAddress(props) {
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
   const { isOpen1, onToggle } = useDisclosure();
-  const [addressLine1,setaddressLine1]=useState("");
-  const[addressLine2,setaddressLine2]=useState("");
-  const[city,setcity]=useState("");
-  const[state,setstate]=useState("");
-  const[pincode,setpincode]=useState("");
-  const[country,setcountry]=useState("");
+  const [addressLine1, setaddressLine1] = useState("");
+  const [addressLine2, setaddressLine2] = useState("");
+  const [city, setcity] = useState("");
+  const [state, setstate] = useState("");
+  const [pincode, setpincode] = useState("");
+  const [country, setcountry] = useState("");
 
- const submitfunctiontorow =()=>{
-  
-  
-    const details  = JSON.parse(localStorage.getItem("data"));
+  const submitfunctiontorow = () => {
+    const details = JSON.parse(localStorage.getItem("data"));
     console.log(details);
-const address = { 
-      addressLine1,addressLine2,city,state,pincode,country}
-      console.log(address);
-    
- const userdata = {
-      code:details.code,
-        name:details.name,
-        imgUrl: details.imgUrl,
-      address:address
-      }
+    const address = {
+      addressLine1,
+      addressLine2,
+      city,
+      state,
+      pincode,
+      country,
+    };
+    console.log(address);
 
-      console.log(userdata);
+    const userdata = {
+      code: details.code,
+      name: details.name,
+      imgUrl: details.imgUrl,
+      address: address,
+    };
 
-    localStorage.setItem("Theateraddresses",JSON.stringify(userdata));
- }
- 
-  const submitter=()=>{
+    console.log(userdata);
+
+    localStorage.setItem("Theateraddresses", JSON.stringify(userdata));
+  };
+
+  const submitter = () => {
     onOpen();
     props.submitfunction();
-  }
-  const updater=()=>{
+  };
+  const updater = () => {
     onClose();
     submitfunctiontorow();
-  }
+  };
   return (
     <div>
       <Button onClick={submitter} colorScheme="blue" mr={3}>
@@ -106,8 +110,9 @@ const address = {
                   placeholder="Street Address 1"
                   type="text"
                   value={addressLine1}
-                   onChange={(e)=>{setaddressLine1(e.target.value)}}
-
+                  onChange={(e) => {
+                    setaddressLine1(e.target.value);
+                  }}
                 />
               </FormControl>
 
@@ -117,8 +122,10 @@ const address = {
                   ref={initialRef}
                   placeholder="Street Address 2"
                   type="text"
-                  value={addressLine2} 
-                  onChange={(e)=>{setaddressLine2(e.target.value)}}
+                  value={addressLine2}
+                  onChange={(e) => {
+                    setaddressLine2(e.target.value);
+                  }}
                 />
               </FormControl>
 
@@ -126,27 +133,53 @@ const address = {
                 <GridItem colSpan={1}>
                   <FormControl mt={2} size="xs">
                     <FormLabel>City</FormLabel>
-                    <Input placeholder="City" type="text"
-                    value={city} 
-                    onChange={(e)=>{setcity(e.target.value)}}  />
+                    <Input
+                      placeholder="City"
+                      type="text"
+                      value={city}
+                      onChange={(e) => {
+                        setcity(e.target.value);
+                      }}
+                    />
                   </FormControl>
                 </GridItem>
                 <GridItem colSpan={1}>
                   <FormControl mt={2} size="xs">
                     <FormLabel>State</FormLabel>
-                    <Input placeholder="State" type="number" value={state} onChange={(e)=>{setstate(e.target.value)}}/>
+                    <Input
+                      placeholder="State"
+                      type="number"
+                      value={state}
+                      onChange={(e) => {
+                        setstate(e.target.value);
+                      }}
+                    />
                   </FormControl>
                 </GridItem>
                 <GridItem colSpan={1}>
                   <FormControl mt={2}>
                     <FormLabel>Pincode</FormLabel>
-                    <Input placeholder="Pincode" type="number" value={pincode} onChange={(e)=>{setpincode(e.target.value)}}/>
+                    <Input
+                      placeholder="Pincode"
+                      type="number"
+                      value={pincode}
+                      onChange={(e) => {
+                        setpincode(e.target.value);
+                      }}
+                    />
                   </FormControl>
                 </GridItem>
                 <GridItem colSpan={1}>
                   <FormControl mt={2}>
                     <FormLabel>Country</FormLabel>
-                    <Input placeholder="Country" type="text" value={country} onChange={(e)=>{setcountry(e.target.value)}} />
+                    <Input
+                      placeholder="Country"
+                      type="text"
+                      value={country}
+                      onChange={(e) => {
+                        setcountry(e.target.value);
+                      }}
+                    />
                   </FormControl>
                 </GridItem>
               </Grid>
