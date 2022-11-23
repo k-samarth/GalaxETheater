@@ -48,6 +48,8 @@ function UpdateSeats(props) {
 
   const [plusdisabled, setPlusDisabled] = useState(false);
   const [minusdisabled, setMinusDisabled] = useState(false);
+  const [seats, setSeats] = useState();
+  const [showNumber, setShowNumber] = useState(false);
 
   const handleClick = () => {
     setCount1(6);
@@ -70,6 +72,11 @@ function UpdateSeats(props) {
     onOpen();
     props.updateAddRow();
   };
+  const Submitter = () => {
+    onClose();
+    setShowNumber(true);
+  };
+
 return (
   <div>
     {props.rowAdd <= 15 ? (
@@ -121,7 +128,18 @@ return (
               <GridItem colSpan={1}>
                 <FormControl mt={2}>
                   <FormLabel>Number of Seats in the Row</FormLabel>
-                  <Input placeholder="Number of Seats" type="number" />
+                  <Input
+                    placeholder="Number of Seats"
+                    id="SeatNumber"
+                    type="number"
+                    disabled={showNumber}
+                    value={seats}
+                    onChange={() =>
+                      setSeats(
+                        (prevNum) => document.getElementById("SeatNumber").value
+                      )
+                    }
+                  />
                 </FormControl>
               </GridItem>
               <GridItem colSpan={2}>
@@ -134,7 +152,7 @@ return (
           </ModalBody>
 
           <ModalFooter>
-            <Button onClick={onClose} colorScheme="blue" mr={3}>
+            <Button onClick={Submitter} colorScheme="blue" mr={3}>
               Save
             </Button>
             <Button onClick={handleClick} colorScheme="blue" mr={3}>

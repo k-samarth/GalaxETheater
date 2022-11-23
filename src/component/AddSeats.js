@@ -48,8 +48,8 @@ function AddSeats(props) {
 
   const [plusdisabled, setPlusDisabled] = useState(false);
   const [minusdisabled, setMinusDisabled] = useState(false);
-
- 
+  const [seats, setSeats] = useState();
+  const [showNumber,setShowNumber] = useState(false);
 
   const handleClick = () => {
     setCount1(6);
@@ -71,6 +71,10 @@ function AddSeats(props) {
   const update=()=>{
     onOpen();
     props.updateAddRow();
+  }
+  const Submitter=()=>{
+    onClose();
+    setShowNumber(true);
   }
   return (
     <div>
@@ -123,7 +127,18 @@ function AddSeats(props) {
                 <GridItem colSpan={1}>
                   <FormControl mt={2}>
                     <FormLabel>Number of Seats in the Row</FormLabel>
-                    <Input placeholder="Number of Seats" type="number" />
+                    <Input
+                      placeholder="Number of Seats"
+                      id="SeatNumber"
+                      type="number"
+                      disabled={showNumber}
+                      value={seats}
+                      onChange={() =>
+                        setSeats((prevNum) =>
+                          document.getElementById("SeatNumber").value
+                        )
+                      }
+                    />
                   </FormControl>
                 </GridItem>
                 <GridItem colSpan={2}>
@@ -136,7 +151,7 @@ function AddSeats(props) {
             </ModalBody>
 
             <ModalFooter>
-              <Button onClick={onClose} colorScheme="blue" mr={3}>
+              <Button onClick={Submitter} colorScheme="blue" mr={3}>
                 Submit
               </Button>
               <Button onClick={handleClick} colorScheme="blue" mr={3}>
