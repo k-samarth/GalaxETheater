@@ -70,82 +70,82 @@ function UpdateSeats(props) {
     onOpen();
     props.updateAddRow();
   };
-return (
-  <div>
-    {props.rowAdd <= 15 ? (
-      <Button onClick={update} colorScheme="blue" mr={3}>
-        Update Rows
-      </Button>
-    ) : null}
-    <Modal
-      initialFocusRef={initialRef}
-      finalFocusRef={finalRef}
-      isOpen={isOpen}
-      onClose={onClose}
-      size="xl"
-    >
-      <ModalOverlay
-        bg="none"
-        backdropFilter="auto"
-        backdropInvert="80%"
-        backdropBlur="2px"
-      />
-      <Box>
-        <ModalContent backgroundColor="#333545" color="white">
-          <ModalHeader>Update Rows</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody pb={6}>
-            <Grid templateColumns="repeat(2, 2fr)" gap={8} align="center">
-              <GridItem colSpan={1}>
-                <FormControl mt={2} size="xs">
-                  <FormLabel>Row Code</FormLabel>
-                  <Input placeholder="Row Code" type="text" />
-                </FormControl>
-              </GridItem>
-              <GridItem colSpan={1}>
-                <FormControl mt={2} size="xs">
-                  <FormLabel>Row Name</FormLabel>
-                  <Input placeholder="Row Name" type="text" />
-                </FormControl>
-              </GridItem>
-              <GridItem colSpan={1}>
-                <FormControl mt={2}>
-                  <FormLabel>Seat Type</FormLabel>
-                  <Select>
-                    <option>Premium</option>
-                    <option>Gold</option>
-                    <option>Normal</option>
-                  </Select>
-                </FormControl>
-              </GridItem>
-              <GridItem colSpan={1}>
-                <FormControl mt={2}>
-                  <FormLabel>Number of Seats in the Row</FormLabel>
-                  <Input placeholder="Number of Seats" type="number" />
-                </FormControl>
-              </GridItem>
-              <GridItem colSpan={2}>
-                <FormControl mt={2}>
-                  <FormLabel>Price</FormLabel>
-                  <Input placeholder="Price" type="number" />
-                </FormControl>
-              </GridItem>
-            </Grid>
-          </ModalBody>
+  return (
+    <div>
+      {props.rowAdd <= 15 ? (
+        <Button onClick={update} colorScheme="blue" mr={3}>
+          Update Rows
+        </Button>
+      ) : null}
+      <Modal
+        initialFocusRef={initialRef}
+        finalFocusRef={finalRef}
+        isOpen={isOpen}
+        onClose={onClose}
+        size="xl"
+      >
+        <ModalOverlay
+          bg="none"
+          backdropFilter="auto"
+          backdropInvert="80%"
+          backdropBlur="2px"
+        />
+        <Box>
+          <ModalContent backgroundColor="#333545" color="white">
+            <ModalHeader>Update Rows</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody pb={6}>
+              <Grid templateColumns="repeat(2, 2fr)" gap={8} align="center">
+                <GridItem colSpan={1}>
+                  <FormControl mt={2} size="xs">
+                    <FormLabel>Row Code</FormLabel>
+                    <Input placeholder="Row Code" type="text" />
+                  </FormControl>
+                </GridItem>
+                <GridItem colSpan={1}>
+                  <FormControl mt={2} size="xs">
+                    <FormLabel>Row Name</FormLabel>
+                    <Input placeholder="Row Name" type="text" />
+                  </FormControl>
+                </GridItem>
+                <GridItem colSpan={1}>
+                  <FormControl mt={2}>
+                    <FormLabel>Seat Type</FormLabel>
+                    <Select>
+                      <option>Premium</option>
+                      <option>Gold</option>
+                      <option>Normal</option>
+                    </Select>
+                  </FormControl>
+                </GridItem>
+                <GridItem colSpan={1}>
+                  <FormControl mt={2}>
+                    <FormLabel>Number of Seats in the Row</FormLabel>
+                    <Input placeholder="Number of Seats" type="number" />
+                  </FormControl>
+                </GridItem>
+                <GridItem colSpan={2}>
+                  <FormControl mt={2}>
+                    <FormLabel>Price</FormLabel>
+                    <Input placeholder="Price" type="number" />
+                  </FormControl>
+                </GridItem>
+              </Grid>
+            </ModalBody>
 
-          <ModalFooter>
-            <Button onClick={onClose} colorScheme="blue" mr={3}>
-              Save
-            </Button>
-            <Button onClick={handleClick} colorScheme="blue" mr={3}>
-              RESET
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Box>
-    </Modal>
-  </div>
-);
+            <ModalFooter>
+              <Button onClick={onClose} colorScheme="blue" mr={3}>
+                Save
+              </Button>
+              <Button onClick={handleClick} colorScheme="blue" mr={3}>
+                RESET
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Box>
+      </Modal>
+    </div>
+  );
 }
 
 export default UpdateSeats;
