@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import axios from "axios";
 import {
   Modal,
   ModalOverlay,
@@ -41,6 +42,38 @@ function AddTheater() {
   const [code,setcode]=useState("");
     const[name,setname]=useState("");
     const[imageurl,setimageurl]=useState("");
+
+const finalsubmit=()=>{
+  const details = JSON.parse(localStorage.getItem("Theateraddresses"));
+  var row  = JSON.parse(localStorage.getItem("array"));
+  const userdata = {
+   code: details.code,
+    name: details.name,
+    seatingCapacity: 70,
+    address: details.address,
+    row: row
+}
+axios.post("http://localhost:9090/theatre", userdata)
+.then((response) => {
+    console.log(response.status);
+    console.log(response);
+
+    localStorage.clear();
+
+    if (response.data === "Saved Successfully") {
+        alert(response.data);
+    }
+    else {
+        alert("address saving failed");
+    }
+
+})
+
+}
+   const databasesubmit=()=>{
+    onClose();
+    finalsubmit();
+   }
 
   const updateAddRow = () => {
     if (rowAdd <= 17 && rowAdd > 0) {
@@ -122,7 +155,7 @@ function AddTheater() {
              <AddAddress submitfunction={submitfunction}></AddAddress>
               <AddSeats updateAddRow={updateAddRow} rowAdd={rowAdd}></AddSeats>
               {rowAdd > 15 ? (
-                <Button onClick={onClose} colorScheme="cyan" mr={3}>
+                <Button onClick={databasesubmit} colorScheme="cyan" mr={3}>
                   Submit
                 </Button>
               ) : null}

@@ -53,6 +53,26 @@ function AddSeats(props) {
   const [totalSeats, settotalSeats] = useState(0);
   const [price, setprice] = useState("");
   const [seattype, setseattype] = useState("");
+  
+  const addrow = ()=>{
+ const row ={code,name,totalSeats,price,seattype};
+
+ if(JSON.parse(localStorage.getItem("array"))==null){
+  localStorage.setItem("array","[]");
+ }
+ var olddata = JSON.parse(localStorage.getItem("array"));
+ console.log(olddata);
+ olddata.push(row);
+ localStorage.setItem("array",JSON.stringify(olddata));
+
+
+}
+
+  const rowupdation=()=>{
+
+    onClose();
+    addrow();
+  }
 
  
 
@@ -153,7 +173,7 @@ function AddSeats(props) {
             </ModalBody>
 
             <ModalFooter>
-              <Button onClick={onClose} colorScheme="blue" mr={3}>
+              <Button onClick={rowupdation} colorScheme="blue" mr={3}>
                 Submit
               </Button>
               <Button onClick={handleClick} colorScheme="blue" mr={3}>
