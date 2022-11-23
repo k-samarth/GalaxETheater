@@ -60,7 +60,7 @@ const address = {
  const userdata = {
       code:details.code,
         name:details.name,
-        seatingCapacity:70,
+        imgUrl: details.imgUrl,
       address:address
       }
 

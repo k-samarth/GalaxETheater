@@ -52,10 +52,10 @@ function AddSeats(props) {
   const [name, setname] = useState("");
   const [totalSeats, settotalSeats] = useState(0);
   const [price, setprice] = useState("");
-  const [seattype, setseattype] = useState("");
+  const [seatType, setseatType] = useState("");
   
   const addrow = ()=>{
- const row ={code,name,totalSeats,price,seattype};
+ const row ={code,name,totalSeats,price,seatType};
 
  if(JSON.parse(localStorage.getItem("array"))==null){
   localStorage.setItem("array","[]");
@@ -143,7 +143,7 @@ function AddSeats(props) {
                 <GridItem colSpan={1}>
                   <FormControl mt={2}>
                     <FormLabel>Seat Type</FormLabel>
-                    <Select onChange={(e) => { setseattype(e.target.value) }} defaultValue="Normal">
+                    <Select onChange={(e) => { setseatType(e.target.value) }} defaultValue="Normal">
                       <option value="Premium">Premium</option>
                       <option value="Gold">Gold</option>
                       <option value="Normal">Normal</option>
