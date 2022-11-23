@@ -41,7 +41,7 @@ function AddTheater() {
   const [rowAdd, setRowAdd] = useState(1);
   const [code,setcode]=useState("");
     const[name,setname]=useState("");
-    const[imageurl,setimageurl]=useState("");
+    const[imgUrl,setimgUrl]=useState("");
 
 const finalsubmit=()=>{
   const details = JSON.parse(localStorage.getItem("Theateraddresses"));
@@ -49,6 +49,7 @@ const finalsubmit=()=>{
   const userdata = {
    code: details.code,
     name: details.name,
+    imgUrl:details.imgUrl,
     seatingCapacity: 70,
     address: details.address,
     row: row
@@ -60,7 +61,7 @@ axios.post("http://localhost:9090/theatre", userdata)
 
     localStorage.clear();
 
-    if (response.data === "Saved Successfully") {
+    if (response.data === "Successfully") {
         alert(response.data);
     }
     else {
@@ -83,7 +84,7 @@ axios.post("http://localhost:9090/theatre", userdata)
   };
 
   const submitfunction = (e)=>{
-    const data={code,name,imageurl};
+    const data={code,name,imgUrl};
 
     localStorage.setItem("data",JSON.stringify(data));
         e.preventDefault();
@@ -145,8 +146,8 @@ axios.post("http://localhost:9090/theatre", userdata)
 
               <FormControl mt={4}>
                 <FormLabel>Image URL</FormLabel>
-                <Input placeholder="Image URL" type="text"   value={imageurl} 
-                onChange={(e)=>{setimageurl(e.target.value)}}/>
+                <Input placeholder="Image URL" type="text"   value={imgUrl} 
+                onChange={(e)=>{setimgUrl(e.target.value)}}/>
               </FormControl>
             </ModalBody>
 
