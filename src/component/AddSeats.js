@@ -48,14 +48,15 @@ function AddSeats(props) {
 
   const [plusdisabled, setPlusDisabled] = useState(false);
   const [minusdisabled, setMinusDisabled] = useState(false);
-  const [code, setcode] = useState("");
   const [name, setname] = useState("");
   const [totalSeats, settotalSeats] = useState(0);
   const [price, setprice] = useState("");
   const [seattype, setseattype] = useState("");
   const [seats, setSeats] = useState();
   const [showNumber, setShowNumber] = useState(false);
-  
+  const seatCode = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"];
+  var code=null;
+
   const addrow = () => {
     const row = { code, name, totalSeats, price, seattype };
 
@@ -131,10 +132,9 @@ function AddSeats(props) {
                     <Input
                       placeholder="Row Code"
                       type="text"
-                      value={code}
-                      onChange={(e) => {
-                        setcode(e.target.value);
-                      }}
+                      disabled="true"
+                      value={seatCode[props.rowAdd-2]}
+                      {...code=seatCode[props.rowAdd-2]}
                     />
                   </FormControl>
                 </GridItem>
@@ -173,7 +173,7 @@ function AddSeats(props) {
                       placeholder="Number of Seats"
                       type="number"
                       id="SeatNumber"
-                      disabled={seats}
+                      disabled={showNumber}
                       value={seats}
                       onChange={(e) => {
                         settotalSeats(e.target.value);
