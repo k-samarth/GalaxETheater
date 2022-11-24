@@ -97,7 +97,7 @@ function AddSeats(props) {
     props.updateAddRow();
   };
   const Submitter = () => {
-    setSeats((prevNum) => document.getElementById("SeatNumber").value);
+    setSeats(() => document.getElementById("SeatNumber").value);
     setShowNumber(true);
   };
   return (

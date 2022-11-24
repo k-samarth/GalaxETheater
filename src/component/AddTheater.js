@@ -56,8 +56,8 @@ const finalsubmit=()=>{
 }
 axios.post("http://localhost:9090/theatre", userdata)
 .then((response) => {
-    console.log(response.status);
-    console.log(response);
+    // console.log(response.status);
+    // console.log(response);
 
     localStorage.clear();
 
