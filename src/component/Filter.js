@@ -12,12 +12,13 @@ import {
 import { MdTune } from "react-icons/md";
 import "./Filter.css";
 import AddTheater from "./AddTheater";
+import {FcSearch} from "react-icons/fc";
 
 // var e = document.getElementById("FilterOption");
 // var value = e.value;
 // var text = e.options[e.selectedIndex].text;
 function Filter(props) {
-  const [filter, setFilter] = useState("Filter");
+  const [filter, setFilter] = useState("");
 
   return (
     <div>
@@ -38,8 +39,8 @@ function Filter(props) {
           </Button>
           
           <InputGroup>
-            <Input placeholder="Name/City/Address" maxW="sm"></Input>
-
+            <Input placeholder="Name/City/Address/" maxW="sm"></Input>
+            
             <Stack margin="0% 2%">
               <Select
                 icon={<MdTune />}
@@ -48,6 +49,7 @@ function Filter(props) {
                 onChange={() => {
                   console.log("In function");
                   setFilter(document.getElementById("FilterOption").value);
+                  props.setFilterType(document.getElementById("FilterOption").value);
                 }}
               >
                 <option value="Filter" disabled selected>
@@ -58,7 +60,11 @@ function Filter(props) {
                 <option value="Date">By Date</option>
                 <option value="All">All</option>
               </Select>
+              
             </Stack>
+            <Button leftIcon={<FcSearch />} colorScheme='blue' variant='solid' onClick={props.SearchFilter}>
+                  Search
+            </Button>
             {props.userType == "ADMIN" ? <AddTheater/> :  <div></div>}
           </InputGroup>
         </Flex>

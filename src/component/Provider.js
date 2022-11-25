@@ -18,25 +18,48 @@ function Provider() {
     var TheaterDetails =
       "Nexus Mall, 21-22, Adugodi Main Road, Koramangala, Chikku Lakshmaiah Layout, Bengaluru, Karnataka 560095, India";
       const [APIdata,setAPIdata] = useState([]);
+      const [filterType, setFilterType] = useState("");
       useEffect(() => {
-        axios.get("http://localhost:9090/theatre")
-        .then((Response)=> {setAPIdata(Response.data);
-        });
-      },[]);
 
-     
+        setAPIdata([]);
+
+        if(filterType == "All"){
+          console.log("all");
+          axios.get("http://localhost:9090/theatre")
+        .then((Response)=> {setAPIdata(Response.data);
+        });}
+        else if(filterType == "City"){
+          
+          console.log("By City ");
+          axios.get("http://localhost:9090/theatre/city/samarth")
+        .then((Response)=> {
+          console.log(Response.data[0]);
+          setAPIdata(Response.data)
+
+
+        });
+        }
+      },[filterType]);
+
+      
+
+const SearchFilter=()=>{
+  console.log("Came back to Provider");
+}     
 
   return (
 <>
 <ChakraProvider>
 <Header name={name} />
-      <Filter userType={userType} />
+      <Filter userType={userType} SearchFilter={SearchFilter} setFilterType={setFilterType} />
       <Grid
         templateColumns="repeat(2, 1fr)"
         gap={8}
         align="center"
         margin="0% 5%"
       >
+
+      
     {APIdata.map((data)=>{
       return(
         <div>
