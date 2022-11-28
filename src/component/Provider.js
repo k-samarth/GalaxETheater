@@ -92,8 +92,8 @@ const SearchFilter=()=>{
 
 
 
-      
-    {APIdata.map((data)=>{
+      {(APIdata!=[]) ?
+    APIdata.map((data)=>{
       return(
         <div>
        
@@ -115,7 +115,7 @@ const SearchFilter=()=>{
     
   );
 }
- ) }
+ )  : <div></div>}
  </Grid>
       <Footer />
    
