@@ -51,14 +51,14 @@ function AddSeats(props) {
   const [name, setname] = useState("");
   const [totalSeats, settotalSeats] = useState(0);
   const [price, setprice] = useState("");
-  const [seattype, setseattype] = useState("");
+  const [seatType, setseattype] = useState("");
   const [seats, setSeats] = useState();
   const [showNumber, setShowNumber] = useState(false);
   const seatCode = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"];
   var code=null;
 
   const addrow = () => {
-    const row = { code, name, totalSeats, price, seattype };
+    const row = { code, name, totalSeats, price, seatType };
 
     if (JSON.parse(localStorage.getItem("array")) == null) {
       localStorage.setItem("array", "[]");

@@ -51,17 +51,17 @@ function Theater(props) {
               <Avatar name="Segun Adebayo" src={props.logo} />
 
               <Box>
-                <Heading size="sm">{props.TheaterName}</Heading>
-                <Text>{props.TheaterDesc}</Text>
+                <Heading size="sm">{props?.TheaterName}</Heading>
+                <Text>{props?.TheaterDesc}</Text>
               </Box>
             </Flex>
-            <DeleteTheater TheaterName={props.TheaterName}/>
+            <DeleteTheater TheaterName={props?.TheaterName}/>
           </Flex>
         </CardHeader>
         <Divider orientation="horizontal" width="80%" />
         <Popover>
         <CardBody>
-          {props.TheaterDetailsOnCard}
+          {props?.TheaterDetailsOnCard}
           <p>
             <PopoverTrigger>
               <Button>
@@ -83,7 +83,7 @@ function Theater(props) {
 
               <PopoverBody>
 
-                {props.TheaterDetails}
+                {props?.TheaterDetails}
 
               </PopoverBody>
 
@@ -130,7 +130,7 @@ function Theater(props) {
             Buy Tickets
           </Button>
 
-          {props.userType == "ADMIN" ? <UpdateTheater /> : null}
+          {props?.userType == "ADMIN" ? <UpdateTheater /> : null}
         </CardFooter>
       </Card>
 
