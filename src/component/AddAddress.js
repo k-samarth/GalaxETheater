@@ -148,7 +148,7 @@ function AddAddress(props) {
                     <FormLabel>State</FormLabel>
                     <Input
                       placeholder="State"
-                      type="number"
+                      type="text"
                       value={state}
                       onChange={(e) => {
                         setstate(e.target.value);
