@@ -14,6 +14,25 @@ import {
   IconButton,
   GridItem,
 } from "@chakra-ui/react";
+import {
+
+  Popover,
+
+  PopoverTrigger,
+
+  PopoverContent,
+
+  PopoverHeader,
+
+  PopoverBody,
+
+  PopoverFooter,
+
+  PopoverArrow,
+
+  PopoverCloseButton,
+
+} from "@chakra-ui/react"
 import { Grid } from "@chakra-ui/react";
 import "./Theater.css";
 import UpdateTheater from "./UpdateTheater";
@@ -36,13 +55,59 @@ function Theater(props) {
                 <Text>{props.TheaterDesc}</Text>
               </Box>
             </Flex>
-            <DeleteTheater/>
+            <DeleteTheater TheaterName={props.TheaterName}/>
           </Flex>
         </CardHeader>
         <Divider orientation="horizontal" width="80%" />
+        <Popover>
         <CardBody>
-          <Text>{props.TheaterDetails}</Text>
+          {props.TheaterDetailsOnCard}
+          <p>
+            <PopoverTrigger>
+              <Button>
+                View More
+              </Button>
+            </PopoverTrigger>
+          </p>
+          <PopoverContent color="white" bg="blue.800" borderColor="blue.800">
+
+              <PopoverHeader pt={4} fontWeight="bold" border="0">
+
+                Address
+
+              </PopoverHeader>
+
+              <PopoverArrow />
+
+              <PopoverCloseButton />
+
+              <PopoverBody>
+
+                {props.TheaterDetails}
+
+              </PopoverBody>
+
+              <PopoverFooter
+
+                border="0"
+
+                d="flex"
+
+                alignItems="center"
+
+                justifyContent="space-between"
+
+                pb={4}
+
+              >
+
+
+
+              </PopoverFooter>
+
+            </PopoverContent>
         </CardBody>
+        </Popover>
 
         <CardFooter
           justify="space-between"

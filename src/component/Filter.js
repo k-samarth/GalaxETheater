@@ -19,7 +19,19 @@ import {FcSearch} from "react-icons/fc";
 // var text = e.options[e.selectedIndex].text;
 function Filter(props) {
   const [filter, setFilter] = useState("");
+  // const[value,setValue]=useState("");
+  const changeFilter = ()=>{
+    settingvalue();
+    // 
+    props.setFilterType(document.getElementById("FilterOption").value);
+    document.getElementById("FilterOption").value = "Filter";
 
+  }
+
+  const settingvalue = (e)=>{
+    // props.setValue(e.target.value);props.setFilterType(null);
+    props.setFilterType(null);
+  }
   return (
     <div>
       <Box padding="2%" width="100%">
@@ -39,7 +51,9 @@ function Filter(props) {
           </Button>
           
           <InputGroup>
-            <Input placeholder="Name/City/Address/" maxW="sm"></Input>
+            <Input placeholder="Name/City/Address/" maxW="sm" id="fields" onChange={(e)=>{
+props.setValue(e.target.value);
+            }}></Input>
             
             <Stack margin="0% 2%">
               <Select
@@ -49,7 +63,6 @@ function Filter(props) {
                 onChange={() => {
                   console.log("In function");
                   setFilter(document.getElementById("FilterOption").value);
-                  props.setFilterType(document.getElementById("FilterOption").value);
                 }}
               >
                 <option value="Filter" disabled selected>
@@ -57,12 +70,12 @@ function Filter(props) {
                 </option>
                 <option value="Name">By Name</option>
                 <option value="City">By City</option>
-                <option value="Date">By Date</option>
+                <option value="Address">By Address</option>
                 <option value="All">All</option>
               </Select>
               
             </Stack>
-            <Button leftIcon={<FcSearch />} colorScheme='blue' variant='solid' onClick={props.SearchFilter}>
+            <Button leftIcon={<FcSearch />} colorScheme='blue' variant='solid' onClick={changeFilter}>
                   Search
             </Button>
             {props.userType == "ADMIN" ? <AddTheater/> :  <div></div>}

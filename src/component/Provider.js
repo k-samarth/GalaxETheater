@@ -8,6 +8,7 @@ import React from "react";
 import {useEffect} from "react";
 import axios from "axios";
 import { useState } from "react";
+import AddTheater from "./AddTheater";
 
 function Provider() {
     var name = "Samarth";
@@ -18,28 +19,57 @@ function Provider() {
     var TheaterDetails =
       "Nexus Mall, 21-22, Adugodi Main Road, Koramangala, Chikku Lakshmaiah Layout, Bengaluru, Karnataka 560095, India";
       const [APIdata,setAPIdata] = useState([]);
-      const [filterType, setFilterType] = useState("");
+      const [filterType, setFilterType] = useState("All");
+      const [value,setValue]=useState("kiru");
+      
+      // var apiString = "http://localhost:9090/theatre/"+{filterType}+"/"+{value};
       useEffect(() => {
-
+    
         setAPIdata([]);
 
-        if(filterType == "All"){
-          console.log("all");
-          axios.get("http://localhost:9090/theatre")
-        .then((Response)=> {setAPIdata(Response.data);
-        });}
-        else if(filterType == "City"){
-          
-          console.log("By City ");
-          axios.get("http://localhost:9090/theatre/city/samarth")
+        console.log(filterType);
+
+        if(filterType=="All"|| filterType=="Filter"){
+        axios.get("http://localhost:9090/theatre/All")
         .then((Response)=> {
-          console.log(Response.data[0]);
-          setAPIdata(Response.data)
+          console.log(Response);
+          setAPIdata(Response.data);
+        })}
+        else if(filterType=="City"){
+          axios.get(`http://localhost:9090/theatre/city/${value}`)
+          .then((Response)=> {
+            console.log(Response);
+            setAPIdata(Response.data);
+          })}
 
+          else if(filterType=="Name"){
+            axios.get(`http://localhost:9090/theatre/name/${value}`)
+            .then((Response)=> {
+              console.log(Response);
+              if(Response.status!=200){
+                alert("name doesnot exist");
+               
+              }
+              else{
+              
+                setAPIdata(Response.data);
+              }
 
-        });
-        }
-      },[filterType]);
+             
+            })}
+            else if(filterType=="Address"){
+              axios.get(`http://localhost:9090/theatre/searchByAddress/${value}`)
+              .then((Response)=> {
+                console.log(Response);
+               setAPIdata(Response.data);
+              })
+            }
+           
+            
+
+        
+        ;}
+      ,[filterType]);
 
       
 
@@ -49,15 +79,18 @@ const SearchFilter=()=>{
 
   return (
 <>
+
 <ChakraProvider>
 <Header name={name} />
-      <Filter userType={userType} SearchFilter={SearchFilter} setFilterType={setFilterType} />
+      <Filter userType={userType} setValue={setValue} setFilterType={setFilterType}  />
       <Grid
         templateColumns="repeat(2, 1fr)"
         gap={8}
         align="center"
         margin="0% 5%"
       >
+
+
 
       
     {APIdata.map((data)=>{
@@ -72,6 +105,7 @@ const SearchFilter=()=>{
             TheaterName={data.name}
             TheaterDesc={data.address.addressLine1}
             TheaterDetails={data.address.addressLine1+" "+data.address.addressLine2+" "+data.address.city+" "+data.address.state+" "+data.address.country+" "+data.address.pincode}
+            TheaterDetailsOnCard={data.address.addressLine1+" "+data.address.addressLine2+" "+data.address.city}
             logo={data.imgUrl}
           />
         </GridItem>
@@ -86,6 +120,7 @@ const SearchFilter=()=>{
       <Footer />
    
  </ChakraProvider>
+
  </>
   )}
 
