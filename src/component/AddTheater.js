@@ -56,18 +56,9 @@ const finalsubmit=()=>{
 }
 axios.post("http://localhost:9090/theater", userdata)
 .then((response) => {
-    // console.log(response.status);
-    // console.log(response);
-
-    localStorage.clear();
-
-    if (response.data === "Successfully") {
-        alert(response.data);
-    }
-    else {
-        alert("address saving failed");
-    }
-
+  localStorage.clear();
+  alert(response.data);
+  window.location.reload();
 })
 
 }
