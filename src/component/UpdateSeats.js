@@ -160,9 +160,9 @@ function UpdateSeats(props) {
                       }}
                       defaultValue="Normal"
                     >
-                      <option value="Premium">Premium</option>
-                      <option value="Gold">Gold</option>
-                      <option value="Normal">Normal</option>
+                      <option value="Me">Premium</option>
+                      <option value="You">Gold</option>
+                      <option value="They">Normal</option>
                     </Select>
                   </FormControl>
                 </GridItem>

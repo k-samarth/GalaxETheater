@@ -158,11 +158,13 @@ function AddSeats(props) {
                       onChange={(e) => {
                         setseattype(e.target.value);
                       }}
-                      defaultValue="Normal"
+                      // defaultValue="Normal"
                     >
-                      <option value="Premium">Premium</option>
-                      <option value="Gold">Gold</option>
-                      <option value="Normal">Normal</option>
+                      <option value="Select">Select</option>
+                      <option value="PREMIUM">Premium</option>
+                      <option value="GOLD">Gold</option>
+                      <option value="NORMAL">Normal</option>
+                      
                     </Select>
                   </FormControl>
                 </GridItem>
