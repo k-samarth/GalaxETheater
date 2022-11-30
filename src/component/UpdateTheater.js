@@ -51,7 +51,7 @@ function UpdateTheater() {
       address: details.address,
       row: row
   }
-  axios.put("http://localhost:9090/theatre/update", userdata)
+  axios.put("http://localhost:9090/theater/update", userdata)
   .then((response) => {
       // console.log(response.status);
       // console.log(response);
