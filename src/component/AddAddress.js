@@ -102,7 +102,7 @@ function AddAddress(props) {
   }
   else{
     setvalidAddress((current)=>!current)
-    
+      
   }
   
   }
@@ -126,7 +126,7 @@ function AddAddress(props) {
 }
   return (
     <div>
-      <Button onClick={()=>{submitter()}} colorScheme="blue" mr={3}>
+      <Button onClick={submitter} colorScheme="blue" mr={3}>
         Add Address
       </Button>
       <Modal

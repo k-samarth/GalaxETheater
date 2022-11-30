@@ -15,24 +15,15 @@ import {
   GridItem,
 } from "@chakra-ui/react";
 import {
-
   Popover,
-
   PopoverTrigger,
-
   PopoverContent,
-
   PopoverHeader,
-
   PopoverBody,
-
   PopoverFooter,
-
   PopoverArrow,
-
   PopoverCloseButton,
-
-} from "@chakra-ui/react"
+} from "@chakra-ui/react";
 import { Grid } from "@chakra-ui/react";
 import "./Theater.css";
 import UpdateTheater from "./UpdateTheater";
@@ -41,7 +32,7 @@ import DeleteTheater from "./DeleteTheater";
 // Modal
 
 function Theater(props) {
-
+  var TheaterName = props?.TheaterName;
   return (
     <div className="Theaters">
       <Card maxW="lg" align="center" border="1px solid black">
@@ -55,58 +46,38 @@ function Theater(props) {
                 <Text>{props?.TheaterDesc}</Text>
               </Box>
             </Flex>
-            <DeleteTheater TheaterName={props?.TheaterName}/>
+            <DeleteTheater TheaterName={props?.TheaterName} />
           </Flex>
         </CardHeader>
         <Divider orientation="horizontal" width="80%" />
         <Popover>
-        <CardBody>
-          {props?.TheaterDetailsOnCard}
-          <p>
-            <PopoverTrigger>
-              <Button>
-                View More
-              </Button>
-            </PopoverTrigger>
-          </p>
-          <PopoverContent color="white" bg="blue.800" borderColor="blue.800">
-
+          <CardBody>
+            {props?.TheaterDetailsOnCard}
+            <p>
+              <PopoverTrigger>
+                <Button>View More</Button>
+              </PopoverTrigger>
+            </p>
+            <PopoverContent color="white" bg="blue.800" borderColor="blue.800">
               <PopoverHeader pt={4} fontWeight="bold" border="0">
-
                 Address
-
               </PopoverHeader>
 
               <PopoverArrow />
 
               <PopoverCloseButton />
 
-              <PopoverBody>
-
-                {props?.TheaterDetails}
-
-              </PopoverBody>
+              <PopoverBody>{props?.TheaterDetails}</PopoverBody>
 
               <PopoverFooter
-
                 border="0"
-
                 d="flex"
-
                 alignItems="center"
-
                 justifyContent="space-between"
-
                 pb={4}
-
-              >
-
-
-
-              </PopoverFooter>
-
+              ></PopoverFooter>
             </PopoverContent>
-        </CardBody>
+          </CardBody>
         </Popover>
 
         <CardFooter
@@ -130,7 +101,9 @@ function Theater(props) {
             Buy Tickets
           </Button>
 
-          {props?.userType == "ADMIN" ? <UpdateTheater /> : null}
+          {props?.userType == "ADMIN" ? (
+            <UpdateTheater TheaterName={TheaterName} />
+          ) : null}
         </CardFooter>
       </Card>
 
@@ -138,5 +111,4 @@ function Theater(props) {
     </div>
   );
 }
-
 export default Theater;

@@ -14,7 +14,7 @@ import { useDisclosure } from "@chakra-ui/react";
 import UpdateAddress from "./UpdateAddress";
 import UpdateSeats from "./UpdateSeats";
 
-function UpdateTheater() {
+function UpdateTheater(props) {
   const OverlayOne = () => (
     <ModalOverlay
       bg="blackAlpha.300"
@@ -42,10 +42,11 @@ function UpdateTheater() {
 
   const finalsubmit=()=>{
     const details = JSON.parse(localStorage.getItem("Theateraddresses"));
+  
     var row  = JSON.parse(localStorage.getItem("array"));
     const userdata = {
      code: details.code,
-      name: details.name,
+      name:document.getElementById('TheaterName').value ,
       imgUrl:details.imgUrl,
       seatingCapacity: 70,
       address: details.address,
@@ -79,31 +80,43 @@ function UpdateTheater() {
         console.log(rowAdd);
       }
     };
-    const data={code,name,imgUrl};
-    const  validateUpdateAdress=()=>{
-      axios.put(`http://localhost:9091/theatre/name/${name}`)
-  .then((response) => {
-      // console.log(response.status);
-      // console.log(response);
-  
-      localStorage.clear();
-  
-      if (response.status!=200) {
-          alert("The name doesnt exists");
-      }
-      
-     
-  
-  })
-      
-    }
-     const submitfunction = (e)=>{
+    const [validTheater, setValidTheater] = useState(false);
+    const validateTheaterDetails = () => {
+     // document.getElementById("TheaterName").value=props.TheaterName;
+      console.log("validTheater : "+ validTheater);
 
-validateUpdateAdress();  
+      const data = { code, name, imgUrl };
+      var codeRE = /^[A-Z]{2}[0-9]{2}$/;
+      var imageRE = /^https?:\/\//i;
+      console.log("data.code" + data.code);
+  data.name=document.getElementById('TheaterName').value;
+      if (data.code === "" || data.name === "" || data.imgUrl === "")
+        alert("Any field cannot be empty!");
+      else if (!codeRE.test(data.code)) {
+        alert("Enter proper code");
+      } 
+      
+       else if (!imageRE.test(data.imgUrl)) {
+        setTimeout(() => {
+          alert("Enter the proper ImageUrl");
+      }, 2000);
+      } else {
+        // e.preventDefault();
+        setValidTheater((cur)=>true);
+        console.log("In theater page" + validTheater);
+      }
+    };
+    
+    
+   
+     const submitfunction = (e)=>{
       const data={code,name,imgUrl};
       localStorage.setItem("data",JSON.stringify(data));
-          e.preventDefault();
+         // e.preventDefault();
+          console.log("done")
+      
         }
+      
 
   return (
     <div>
@@ -117,6 +130,7 @@ validateUpdateAdress();
           onOpen();
         }}
       >
+
         Update Theater
       </Button>
       <>
@@ -150,8 +164,8 @@ validateUpdateAdress();
 
               <FormControl mt={4}>
                 <FormLabel>Theater Name</FormLabel>
-                <Input placeholder="Theater name" type="text" 
-                value={name} 
+                <Input placeholder="Theater name" type="text" id="TheaterName" 
+                value={props.TheaterName} 
                 onChange={(e)=>{setname(e.target.value)}} />
               </FormControl>
 
@@ -163,7 +177,7 @@ validateUpdateAdress();
             </ModalBody>
 
             <ModalFooter>
-              <UpdateAddress submitfunction={submitfunction}></UpdateAddress>
+              <UpdateAddress validateTheaterDetails={validateTheaterDetails} validTheater={validTheater} submitfunction={submitfunction}></UpdateAddress>
               <UpdateSeats 
                 updateAddRow={updateAddRow}
                 rowAdd={rowAdd}
