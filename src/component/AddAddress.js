@@ -74,11 +74,47 @@ function AddAddress(props) {
   };
 
   const submitter = () => {
-    onOpen();
+    console.log("first"+props.validtheater1)
     props.submitfunction();
+    console.log(props.validtheater1)
+    if(props.validtheater1){
+      console.log("second"+props.validtheater1)
+      onOpen();
+    }
   };
+  const [validaddress,setValidaddress]=useState(false);
+  const validateAddress=()=>{
+   var  regexforpincode= /^[1-9]{1}[0-9]{2}[0-9]{3}$/;
+    if(addressLine1==""||addressLine2==""||city==""||state==""||pincode==""||country==""){
+      alert("Please Enter All the fields")
+    }
+    else if(addressLine1.length<5){
+      alert("Enter valid  addressline1")
+    }
+    else if(addressLine2.length<5){
+      alert("Enter valid addresslin2")
+    }
+    
+    else if(city.length<3){
+      alert("Enter valid city")
+    }
+    else if(state.length<3){
+      alert("Enter valid state")
+    }
+    else if(!regexforpincode.test(pincode)){
+      alert("Enter the valid Pincode")
+    }
+    else if(country.length<3){
+      alert("Enter valid country")
+    }
+    
+    else{
+      setValidaddress(true)
+    }
+  }
   const updater = () => {
-    onClose();
+    validateAddress()
+    if(validaddress){ onClose()}
     submitfunctiontorow();
   };
   return (

@@ -42,6 +42,7 @@ import DeleteTheater from "./DeleteTheater";
 
 function Theater(props) {
 
+  var theatername=props.TheaterName;
   return (
     <div className="Theaters">
       <Card maxW="lg" align="center" border="1px solid black">
@@ -130,7 +131,7 @@ function Theater(props) {
             Buy Tickets
           </Button>
 
-          {props?.userType == "ADMIN" ? <UpdateTheater /> : null}
+          {props?.userType == "ADMIN" ? <UpdateTheater theatername={theatername}/> : null}
         </CardFooter>
       </Card>
 

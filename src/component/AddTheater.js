@@ -62,6 +62,8 @@ axios.post("http://localhost:9090/theater", userdata)
 })
 
 }
+
+  
    const databasesubmit=()=>{
     onClose();
     finalsubmit();
@@ -74,11 +76,38 @@ axios.post("http://localhost:9090/theater", userdata)
     }
   };
 
-  const submitfunction = (e)=>{
-    const data={code,name,imgUrl};
+  const [validtheater,setValidtheater]=useState(false)
 
+  const validatetheater=()=>{
+    var regexforCode = /^[A-Z]{2}[0-9]{2}$/;
+    var regexforimgUrl=/^https?:\/\/(.+\/)+.+(\.(gif|png|jpg|jpeg|webp|svg|psd|bmp|tif|jfif))$/i;
+      
+        if(!regexforCode.test(code)){
+          alert("Enter the code correctly")
+         
+        }
+      else if(name.length<3 || name.length>20){
+          alert("Enter the valid theater name");
+        }
+        else if(!regexforimgUrl.test(imgUrl)){
+          alert("Enter valid img url")
+        }
+      else  if(code==""||name==""||imgUrl==""||code==" "||name==" "||imgUrl==" "){
+          alert("Please Enter the Empty fields")
+        }
+      else{
+       
+        setValidtheater(true)
+       
+      }
+    
+        
+  }
+  const submitfunction = ()=>{
+    const data={code,name,imgUrl};
+    validatetheater()
     localStorage.setItem("data",JSON.stringify(data));
-        e.preventDefault();
+      
       }
   return (
     <div>
@@ -144,7 +173,7 @@ axios.post("http://localhost:9090/theater", userdata)
 
             <ModalFooter>
             
-             <AddAddress submitfunction={submitfunction}></AddAddress>
+             <AddAddress submitfunction={submitfunction} validtheater1={validtheater}></AddAddress>
               <AddSeats updateAddRow={updateAddRow} rowAdd={rowAdd}></AddSeats>
               {rowAdd > 15 ? (
                 <Button onClick={databasesubmit} colorScheme="cyan" mr={3}>

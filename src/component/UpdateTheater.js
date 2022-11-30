@@ -14,7 +14,9 @@ import { useDisclosure } from "@chakra-ui/react";
 import UpdateAddress from "./UpdateAddress";
 import UpdateSeats from "./UpdateSeats";
 
-function UpdateTheater() {
+function UpdateTheater(props) {
+  const theatername=props.theatername;
+  console.log("shain here"+theatername)
   const OverlayOne = () => (
     <ModalOverlay
       bg="blackAlpha.300"
@@ -45,13 +47,13 @@ function UpdateTheater() {
     var row  = JSON.parse(localStorage.getItem("array"));
     const userdata = {
      code: details.code,
-      name: details.name,
+      name:theatername,
       imgUrl:details.imgUrl,
       seatingCapacity: 70,
       address: details.address,
       row: row
   }
-  axios.put("http://localhost:9090/theatre/update", userdata)
+  axios.put("http://localhost:9090/theater/update", userdata)
   .then((response) => {
       // console.log(response.status);
       // console.log(response);
@@ -78,11 +80,36 @@ function UpdateTheater() {
         console.log(rowAdd);
       }
     };
-     const submitfunction = (e)=>{
-      const data={code,name,imgUrl};
+
+    const [validateUpdateTheater,setValidateUpadteTheater]=useState(false);
+    const ValiditeUpdateTheater=()=>{
+      var regexforCode = /^[A-Z]{2}[0-9]{2}$/;
+      var regexforimgUrl=/^https?:\/\/(.+\/)+.+(\.(gif|png|jpg|jpeg|webp|svg|psd|bmp|tif|jfif))$/i;
+        
+      if(code==""||imgUrl==""){
+        alert("Please Enter all the fields")
+      }
+      else if(!regexforCode.test(code)){
+        alert("Please Enter the code correctly")
+      }
+    
+    else if(!regexforimgUrl.test(imgUrl)){
+      alert("Enter the valid imgUrl")
+    }
+     
+      else{
+        
+        setValidateUpadteTheater(true)
+        console.log("inside the else block"+validateUpdateTheater)
+      }
+    }
+     const submitfunction = ()=>{
+       
+      ValiditeUpdateTheater()
+      const data={code,theatername,imgUrl};
   
       localStorage.setItem("data",JSON.stringify(data));
-          e.preventDefault();
+         
         }
 
   return (
@@ -131,8 +158,8 @@ function UpdateTheater() {
               <FormControl mt={4}>
                 <FormLabel>Theater Name</FormLabel>
                 <Input placeholder="Theater name" type="text" 
-                value={name} 
-                onChange={(e)=>{setname(e.target.value)}} />
+                value={props.theatername} 
+                onChange={(e)=>{setname(props.theatername)}} />
               </FormControl>
 
               <FormControl mt={4}>
@@ -143,7 +170,7 @@ function UpdateTheater() {
             </ModalBody>
 
             <ModalFooter>
-              <UpdateAddress submitfunction={submitfunction}></UpdateAddress>
+              <UpdateAddress submitfunction={submitfunction}  validateUpdateTheater1={validateUpdateTheater} theatername={theatername}></UpdateAddress>
               <UpdateSeats 
                 updateAddRow={updateAddRow}
                 rowAdd={rowAdd}

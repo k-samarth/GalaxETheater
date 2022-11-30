@@ -69,10 +69,30 @@ function UpdateSeats(props) {
     localStorage.setItem("array", JSON.stringify(olddata));
   };
 
+  const[validrow,setValidrow]=useState(false)
+  const validaterow=()=>{
+    var regexforRowname = /^[A-Z]{2}[0-9]{2}$/;
+        if(name==""||totalSeats==""||price==""){
+            alert("Please Enter all the fields")
+        }
+        else if(!regexforRowname.test(name)){
+          alert("Enter valid row name")
+        }
+        else if(totalSeats<6||totalSeats>10){
+          alert("Number of seats should be 6-10")
+        }
+        else{
+          setValidrow(true)
+
+        }
+  }
   const rowupdation = () => {
-    onClose();
+   validaterow()
+    if(validrow){
+    onClose()
     addrow();
     Submitter();
+    }
   };
 
   const handleClick = () => {
@@ -160,6 +180,7 @@ function UpdateSeats(props) {
                       }}
                       defaultValue="Normal"
                     >
+                      <option value="select">Select</option>
                       <option value="Me">Premium</option>
                       <option value="You">Gold</option>
                       <option value="They">Normal</option>

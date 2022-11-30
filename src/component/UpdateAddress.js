@@ -56,7 +56,7 @@ function UpdateAddress(props) {
 
     const userdata = {
       code: details.code,
-      name: details.name,
+      name: props.theatername,
       imgUrl: details.imgUrl,
       address: address,
     };
@@ -67,11 +67,52 @@ function UpdateAddress(props) {
   };
 
   const submitter = () => {
-    onOpen();
-    props.submitfunction();
+    
+    if (props.validateUpdateTheater1) { 
+      console.log("befor opening add"+props.validateUpdateTheater1)
+      onOpen(); 
+    }
+     
+
+      props.submitfunction();
   };
+
+  const [validaddress,setValidaddress]=useState(false);
+  const validateAddress=()=>{
+   var  regexforpincode= /^[1-9]{1}[0-9]{2}[0-9]{3}$/;
+    if(addressLine1==""||addressLine2==""||city==""||state==""||pincode==""||country==""){
+      alert("Please Enter All the fields")
+    }
+    else if(addressLine1.length<5){
+      alert("Enter valid  addressline1")
+    }
+    else if(addressLine2.length<5){
+      alert("Enter valid addresslin2")
+    }
+    
+    else if(city.length<3){
+      alert("Enter valid city")
+    }
+    else if(state.length<3){
+      alert("Enter valid state")
+    }
+    else if(!regexforpincode.test(pincode)){
+      alert("Enter the valid Pincode")
+    }
+    else if(country.length<3){
+      alert("Enter valid country")
+    }
+    
+    else{
+      setValidaddress(true)
+    }
+  }
   const updater = () => {
-    onClose();
+
+    validateAddress()
+    if(validaddress){ onClose()}
+   
+  
     submitfunctiontorow();
   };
 
@@ -127,34 +168,34 @@ function UpdateAddress(props) {
                 <GridItem colSpan={1}>
                   <FormControl mt={2} size="xs">
                     <FormLabel>City</FormLabel>
-                    <Input placeholder="City" 
-                           type="text" 
-                           value={city}
-                           onChange={(e) => {
-                              setcity(e.target.value);
-                           }}
-                           />
+                    <Input placeholder="City"
+                      type="text"
+                      value={city}
+                      onChange={(e) => {
+                        setcity(e.target.value);
+                      }}
+                    />
                   </FormControl>
                 </GridItem>
                 <GridItem colSpan={1}>
                   <FormControl mt={2} size="xs">
                     <FormLabel>State</FormLabel>
-                    <Input placeholder="State" 
-                           type="text" 
-                           value={state}
-                           onChange={(e) => {
-                           setstate(e.target.value);
-                           }}
-                          />
+                    <Input placeholder="State"
+                      type="text"
+                      value={state}
+                      onChange={(e) => {
+                        setstate(e.target.value);
+                      }}
+                    />
                   </FormControl>
                 </GridItem>
                 <GridItem colSpan={1}>
                   <FormControl mt={2}>
                     <FormLabel>Pincode</FormLabel>
-                    <Input 
-                    placeholder="Pincode" 
-                    type="number" 
-                    value={pincode}
+                    <Input
+                      placeholder="Pincode"
+                      type="number"
+                      value={pincode}
                       onChange={(e) => {
                         setpincode(e.target.value);
                       }}
@@ -164,10 +205,10 @@ function UpdateAddress(props) {
                 <GridItem colSpan={1}>
                   <FormControl mt={2}>
                     <FormLabel>Country</FormLabel>
-                    <Input 
-                    placeholder="Country" 
-                    type="text" 
-                    value={country}
+                    <Input
+                      placeholder="Country"
+                      type="text"
+                      value={country}
                       onChange={(e) => {
                         setcountry(e.target.value);
                       }}
