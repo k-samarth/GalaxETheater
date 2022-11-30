@@ -68,11 +68,38 @@ function AddSeats(props) {
     olddata.push(row);
     localStorage.setItem("array", JSON.stringify(olddata));
   };
+  const [validrow,setValidrow]=useState(false);
+  const validateRowDetails=()=>{
+    
+    console.log(document.getElementById("seatType").value)
+    var rowNameRE = /^[A-Z]{2}[0-9]{2}$/;
+    if(name==""||totalSeats==""||price==""){
+      alert("Any field cant be empty");
+    }
+    else if(!rowNameRE.test(name)){
+      alert("Enter proper row name")
+    }
+    else if(document.getElementById("seatType").value==="Select")
+    {
+      
+      alert("Please enter the seat type")
+    }
+    else if(totalSeats<6 || totalSeats>10)
+    {
+      alert("Enter proper total seats");
+    }
+    else{
+setValidrow((current)=>!current);
+    }
 
+  }
   const rowupdation = () => {
+    validateRowDetails();
+    if(validrow){
     onClose();
     addrow();
     Submitter();
+    }
   };
 
   const handleClick = () => {
@@ -100,6 +127,7 @@ function AddSeats(props) {
     setSeats(() => document.getElementById("SeatNumber").value);
     setShowNumber(true);
   };
+
   return (
     <div>
       {props.rowAdd <= 15 ? (
@@ -158,6 +186,7 @@ function AddSeats(props) {
                       onChange={(e) => {
                         setseattype(e.target.value);
                       }}
+                      id="seatType"
                       // defaultValue="Normal"
                     >
                       <option value="Select">Select</option>
@@ -170,6 +199,7 @@ function AddSeats(props) {
                 </GridItem>
                 <GridItem colSpan={1}>
                   <FormControl mt={2}>
+
                     <FormLabel>Number of Seats in the Row </FormLabel>
                     <Input
                       placeholder="Number of Seats"
@@ -180,6 +210,7 @@ function AddSeats(props) {
                       onChange={(e) => {
                         settotalSeats(e.target.value);
                       }}
+
                     />
                   </FormControl>
                 </GridItem>
@@ -201,6 +232,7 @@ function AddSeats(props) {
 
             <ModalFooter>
               <Button onClick={rowupdation} colorScheme="blue" mr={3}>
+
                 Submit
               </Button>
               <Button onClick={handleClick} colorScheme="blue" mr={3}>

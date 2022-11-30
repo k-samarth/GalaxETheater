@@ -51,16 +51,17 @@ function UpdateTheater() {
       address: details.address,
       row: row
   }
-  axios.put("http://localhost:9090/theatre/update", userdata)
+  axios.put("http://localhost:9091/theatre/update",userdata)
   .then((response) => {
       // console.log(response.status);
       // console.log(response);
-  
+  console.log("im coming to then block");
       localStorage.clear();
   
       if (response.data === "Updated Successfully") {
           alert(response.data);
       }
+      
       else {
           alert("Saving failed");
       }
@@ -78,9 +79,28 @@ function UpdateTheater() {
         console.log(rowAdd);
       }
     };
-     const submitfunction = (e)=>{
-      const data={code,name,imgUrl};
+    const data={code,name,imgUrl};
+    const  validateUpdateAdress=()=>{
+      axios.put(`http://localhost:9091/theatre/name/${name}`)
+  .then((response) => {
+      // console.log(response.status);
+      // console.log(response);
   
+      localStorage.clear();
+  
+      if (response.status!=200) {
+          alert("The name doesnt exists");
+      }
+      
+     
+  
+  })
+      
+    }
+     const submitfunction = (e)=>{
+
+validateUpdateAdress();  
+      const data={code,name,imgUrl};
       localStorage.setItem("data",JSON.stringify(data));
           e.preventDefault();
         }

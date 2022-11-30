@@ -48,6 +48,7 @@ function UpdateSeats(props) {
 
   const [plusdisabled, setPlusDisabled] = useState(false);
   const [minusdisabled, setMinusDisabled] = useState(false);
+
   const [name, setname] = useState("");
   const [totalSeats, settotalSeats] = useState(0);
   const [price, setprice] = useState("");
@@ -97,6 +98,7 @@ function UpdateSeats(props) {
     props.updateAddRow();
   };
   const Submitter = () => {
+
     setSeats(() => document.getElementById("SeatNumber").value);
     setShowNumber(true);
   };
@@ -210,6 +212,7 @@ function UpdateSeats(props) {
       </Modal>
     </div>
   );
+
 }
 
 export default UpdateSeats;
