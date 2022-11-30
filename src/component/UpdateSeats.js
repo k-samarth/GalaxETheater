@@ -71,9 +71,13 @@ function UpdateSeats(props) {
   };
 
   const rowupdation = () => {
+    validateRowDetails();
+    if(validrow){
     onClose();
     addrow();
     Submitter();
+    }
+    
   };
 
   const handleClick = () => {
@@ -93,6 +97,31 @@ function UpdateSeats(props) {
       setCount1(count1 + 1);
     }
   };
+  const [validrow,setValidrow]=useState(false);
+  const validateRowDetails=()=>{
+    
+    //console.log(document.getElementById("seatType").value)
+    var rowNameRE = /^[A-Z]{2}[0-9]{2}$/;
+    if(name==""||totalSeats==""||price==""){
+      alert("Any field cant be empty");
+    }
+    else if(!rowNameRE.test(name)){
+      alert("Enter proper row name")
+    }
+    else if(document.getElementById("seatType").value=="Select")
+    {
+      
+      alert("Please enter the seat type")
+    }
+    else if(totalSeats<6 || totalSeats>10)
+    {
+      alert("Enter proper total seats");
+    }
+    else{
+setValidrow((current)=>!current);
+    }
+
+  }
   const update = () => {
     onOpen();
     props.updateAddRow();
@@ -157,11 +186,13 @@ function UpdateSeats(props) {
                   <FormControl mt={2}>
                     <FormLabel>Seat Type</FormLabel>
                     <Select
+                    id="seatType"
                     onChange={(e) => {
                         setseattype(e.target.value);
                       }}
                       defaultValue="Normal"
                     >
+                      <option value="Select">Select</option>
                       <option value="Me">Premium</option>
                       <option value="You">Gold</option>
                       <option value="They">Normal</option>
