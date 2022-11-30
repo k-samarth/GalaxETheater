@@ -6,6 +6,7 @@ import {
   Grid,
   GridItem,
   Input,
+  InputGroup,
   Select,
 } from "@chakra-ui/react";
 import {
@@ -74,6 +75,9 @@ function AddSeats(props) {
     var regexforRowname = /^[A-Z]{2}[0-9]{2}$/;
         if(name==""||totalSeats==""||price==""){
             alert("Please Enter all the fields")
+        }
+        else if(document.getElementById("selectSeatType").value=="Select"){
+          alert("Please Select the Seat Type")
         }
         else if(!regexforRowname.test(name)){
           alert("Enter valid row name")
@@ -174,7 +178,7 @@ function AddSeats(props) {
                 <GridItem colSpan={1}>
                   <FormControl mt={2}>
                     <FormLabel>Seat Type</FormLabel>
-                    <Select
+                    <Select id="selectSeatType"
                       onChange={(e) => {
                         setseattype(e.target.value);
                       }}

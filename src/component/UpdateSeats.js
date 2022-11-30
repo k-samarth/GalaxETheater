@@ -78,6 +78,9 @@ function UpdateSeats(props) {
         else if(!regexforRowname.test(name)){
           alert("Enter valid row name")
         }
+        else if(document.getElementById("selectSeatType").value=="select"){
+          alert("Please Select the Seat Type")
+        }
         else if(totalSeats<6||totalSeats>10){
           alert("Number of seats should be 6-10")
         }
@@ -174,7 +177,7 @@ function UpdateSeats(props) {
                 <GridItem colSpan={1}>
                   <FormControl mt={2}>
                     <FormLabel>Seat Type</FormLabel>
-                    <Select
+                    <Select id="selectSeatType"
                     onChange={(e) => {
                         setseattype(e.target.value);
                       }}
