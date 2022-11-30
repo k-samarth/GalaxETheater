@@ -72,18 +72,61 @@ function AddAddress(props) {
 
     localStorage.setItem("Theateraddresses", JSON.stringify(userdata));
   };
-
+  const [validAddress,setvalidAddress]=useState(false);
+  const validateAddressDetails=()=>{
+    var pincodeRE= /^[1-9]{1}[0-9]{2}[0-9]{3}$/;
+    
+  if(addressLine1==""||addressLine2==""||city==""||state==""||country==""||pincode=="")
+  {
+  alert("Any field cannot be null");
+  }
+  else if(addressLine1.length<5 ){
+    alert("Enter proper Address 1")
+  }
+  else if(addressLine2.length<5 ){
+    alert("Enter proper Address 2")
+  }
+  else if(city.length<3 ){
+    alert("Enter proper city")
+  }
+  else if(state.length<3 ){
+    alert("Enter proper state")
+  }
+  else if(!pincodeRE.test(pincode))
+  {
+    alert("Enter proper pincode");
+  }
+  else if(country.length<3)
+  {
+    alert("Enter proper country");
+  }
+  else{
+    setvalidAddress((current)=>!current)
+    
+  }
+  
+  }
   const submitter = () => {
-    onOpen();
-    props.submitfunction();
+    console.log("In address page1"+props.validTheater)
+    props.validateTheaterDetails();
+    console.log("In address page2"+props.validTheater)
+    if(props?.validTheater){
+      // console.log("In address page"+props.validTheater)
+        onOpen();
+        onOpen();
+        props.submitfunction();
+   }
   };
   const updater = () => {
+    validateAddressDetails();
+    if(validAddress){
     onClose();
     submitfunctiontorow();
-  };
+  }
+}
   return (
     <div>
-      <Button onClick={submitter} colorScheme="blue" mr={3}>
+      <Button onClick={()=>{submitter()}} colorScheme="blue" mr={3}>
         Add Address
       </Button>
       <Modal
