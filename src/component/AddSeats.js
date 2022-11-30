@@ -127,6 +127,7 @@ setValidrow((current)=>!current);
     setSeats(() => document.getElementById("SeatNumber").value);
     setShowNumber(true);
   };
+
   return (
     <div>
       {props.rowAdd <= 15 ? (
@@ -198,6 +199,7 @@ setValidrow((current)=>!current);
                 </GridItem>
                 <GridItem colSpan={1}>
                   <FormControl mt={2}>
+
                     <FormLabel>Number of Seats in the Row </FormLabel>
                     <Input
                       placeholder="Number of Seats"
@@ -208,6 +210,7 @@ setValidrow((current)=>!current);
                       onChange={(e) => {
                         settotalSeats(e.target.value);
                       }}
+
                     />
                   </FormControl>
                 </GridItem>
@@ -229,6 +232,7 @@ setValidrow((current)=>!current);
 
             <ModalFooter>
               <Button onClick={rowupdation} colorScheme="blue" mr={3}>
+
                 Submit
               </Button>
               <Button onClick={handleClick} colorScheme="blue" mr={3}>
