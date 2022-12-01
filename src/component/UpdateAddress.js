@@ -83,10 +83,10 @@ function UpdateAddress(props) {
     if(addressLine1==""||addressLine2==""||city==""||state==""||pincode==""||country==""){
       alert("Please Enter All the fields")
     }
-    else if(addressLine1.length<5){
+    else if(addressLine1.length<3){
       alert("Enter valid  addressline1")
     }
-    else if(addressLine2.length<5){
+    else if(addressLine2.length<3){
       alert("Enter valid addresslin2")
     }
     
