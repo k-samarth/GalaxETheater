@@ -12,7 +12,7 @@ import {
 import { MdTune } from "react-icons/md";
 import "./Filter.css";
 import AddTheater from "./AddTheater";
-import {FcSearch} from "react-icons/fc";
+import { FcSearch } from "react-icons/fc";
 
 // var e = document.getElementById("FilterOption");
 // var value = e.value;
@@ -20,25 +20,23 @@ import {FcSearch} from "react-icons/fc";
 function Filter(props) {
   const [filter, setFilter] = useState("");
   // const[value,setValue]=useState("");
-  const changeFilter = ()=>{
+  const changeFilter = () => {
     settingvalue();
-    // 
+    //
     props.setFilterType(document.getElementById("FilterOption").value);
     document.getElementById("FilterOption").value = "Filter";
+  };
 
-  }
-
-  const settingvalue = (e)=>{
+  const settingvalue = (e) => {
     // props.setValue(e.target.value);props.setFilterType(null);
     props.setFilterType(null);
-  }
+  };
   return (
     <div>
       <Box padding="2%" width="100%">
-        <Flex className="filters" justifyContent="space-between" >
+        <Flex className="filters" justifyContent="space-between">
           <Button
             flex="1"
-            
             variant="ghost"
             className="All"
             color="white"
@@ -49,12 +47,17 @@ function Filter(props) {
             {filter}
             {/* {text} */}
           </Button>
-          
+
           <InputGroup>
-            <Input placeholder="Name/City/Address/" maxW="sm" id="fields" onChange={(e)=>{
-props.setValue(e.target.value);
-            }}></Input>
-            
+            <Input
+              placeholder="Name/City/Address/"
+              maxW="sm"
+              id="fields"
+              onChange={(e) => {
+                props.setValue(e.target.value);
+              }}
+            ></Input>
+
             <Stack margin="0% 2%">
               <Select
                 icon={<MdTune />}
@@ -73,12 +76,16 @@ props.setValue(e.target.value);
                 <option value="Address">By Address</option>
                 <option value="All">All</option>
               </Select>
-              
             </Stack>
-            <Button leftIcon={<FcSearch />} colorScheme='blue' variant='solid' onClick={changeFilter}>
-                  Search
+            <Button
+              leftIcon={<FcSearch />}
+              colorScheme="blue"
+              variant="solid"
+              onClick={changeFilter}
+            >
+              Search
             </Button>
-            {props.userType == "ADMIN" ? <AddTheater/> :  <div></div>}
+            {props.userType == "ADMIN" ? <AddTheater /> : <div></div>}
           </InputGroup>
         </Flex>
       </Box>
