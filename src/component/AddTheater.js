@@ -54,7 +54,7 @@ const finalsubmit=()=>{
     address: details.address,
     row: row
 }
-axios.post("http://localhost:9091/theater", userdata)
+axios.post("http://localhost:9090/theater", userdata)
 .then((response) => {
   localStorage.clear();
   alert(response.data);

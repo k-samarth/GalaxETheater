@@ -38,7 +38,7 @@ function Provider(props) {
 
     if (filterType == "All" || filterType == "Filter") {
       axios
-        .get("http://localhost:9091/theater/All")
+        .get("http://localhost:9090/theater/All")
         .then((response) => {
           if (response.status == "200") {
             console.log(response);
@@ -53,7 +53,7 @@ function Provider(props) {
         });
     } else if (filterType == "City") {
       axios
-        .get(`http://localhost:9091/theater/city/${value}`)
+        .get(`http://localhost:9090/theater/city/${value}`)
         .then((response) => {
           if (response.status == "200") {
             console.log(response);
@@ -68,7 +68,7 @@ function Provider(props) {
         });
     } else if (filterType == "Name") {
       axios
-        .get(`http://localhost:9091/theater/name/${value}`)
+        .get(`http://localhost:9090/theater/name/${value}`)
         .then((response) => {
           if (response.status == "200") {
             console.log(response);
@@ -83,7 +83,7 @@ function Provider(props) {
         });
     } else if (filterType == "Address") {
       axios
-        .get(`http://localhost:9091/theater/searchByAddress/${value}`)
+        .get(`http://localhost:9090/theater/searchByAddress/${value}`)
         .then((response) => {
           if (response.status == "200") {
             console.log(response);

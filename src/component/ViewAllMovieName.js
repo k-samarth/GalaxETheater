@@ -11,7 +11,7 @@ const ViewAllMovieName = ({ moviename }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9091/movie/movieName/${moviename}`)
+      .get(`http://localhost:9090/movie/movieName/${moviename}`)
       .then((response) => {
         setTicket(response.data);
         console.log(response);
