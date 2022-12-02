@@ -4,7 +4,7 @@ import Header from "./component/Header";
 import Theater from "./component/Theater";
 import Filter from "./component/Filter";
 import Footer from "./component/Footer";
-import logo from "./images/logo.png";
+import logo from "./images/Logo.png";
 import Provider from "./component/Provider";
 import ViewTicket from "./pages/ViewTicket";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -32,7 +32,7 @@ function App() {
         />
         <Route path="/Usermenu" element={<UserMenu />} />
         <Route path="/admin" element={<AdminMenu />} />
-        <Route path="/theater" element={<Provider user={"USER"} />} />
+        <Route path="/theater" element={<Provider admin={"ADMIN"} />} />
       </Routes>
     </BrowserRouter>
   );

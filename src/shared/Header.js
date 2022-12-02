@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../images/logo.png";
+import logo from "../images/Logo.png";
 import logo1 from "../images/logo1.png";
 import logo2 from "../images/logo2.png";
 import "./Header.css";

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "./ViewAllTicket.css";
-import Logo from "../images/logo.png";
+import Logo from "../images/Logo.png";
 import axios from "axios";
 
 const ViewAllTicket = () => {

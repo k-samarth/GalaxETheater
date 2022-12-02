@@ -53,7 +53,7 @@ function UpdateTheater(props) {
       address: details.address,
       row: row
   }
-  axios.put("http://localhost:9090/theater/update", userdata)
+  axios.put("http://localhost:9091/theater/update", userdata)
   .then((response) => {
       // console.log(response.status);
       // console.log(response);

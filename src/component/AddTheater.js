@@ -54,7 +54,7 @@ const finalsubmit=()=>{
     address: details.address,
     row: row
 }
-axios.post("http://localhost:9090/theater", userdata)
+axios.post("http://localhost:9091/theater", userdata)
 .then((response) => {
   localStorage.clear();
   alert(response.data);
@@ -80,7 +80,7 @@ axios.post("http://localhost:9090/theater", userdata)
 
   const validatetheater=()=>{
     var regexforCode = /^[A-Z]{2}[0-9]{2}$/;
-    var regexforimgUrl=/^https?:\/\/(.+\/)+.+(\.(gif|png|jpg|jpeg|webp|svg|psd|bmp|tif|jfif))$/i;
+    var regexforimgUrl=/^https?:\/\//i;
       
         if(!regexforCode.test(code)){
           alert("Enter the code correctly")

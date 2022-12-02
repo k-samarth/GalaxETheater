@@ -1,6 +1,6 @@
 import { Avatar, Box, Flex, Heading, Image } from '@chakra-ui/react'
 import React from 'react'
-import logo from "../images/logo.png";
+ import logo from "../images/logo1.png";
 import "./Footer.css"
 
 function Footer() {
